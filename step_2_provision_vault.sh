@@ -2,7 +2,7 @@
 
 figlet -w 160 -f standard "Provision Vault"
 
-export VAULT_DNS=$(echo `cat ./.vault_dns`)
+export VAULT_DNS=$(echo `cat ~/.vault_dns`)
 echo "VAULT at "$VAULT_DNS
 
 figlet -f slant "Upload vault.init.sh and friends"
@@ -35,7 +35,7 @@ while read line
 do
    echo "$line" | grep  "token          \s*" | xargs | cut -d ' ' -f2 > ./.line
    if [ $(wc -c < ./.line) -ge 8 ]; then
-      cp ./.line ./.vault_initial_root_token
+      cp ./.line ~/.vault_initial_root_token
       rm ./.line
    fi
 done < ./.temp

@@ -10,4 +10,4 @@ cd terraform-vault
 terraform destroy -auto-approve
 cd ..
 
-rm ./.vault_dns ./.vault_initial_root_token ./.jenkins_dns
+rm ~/.vault_dns ~/.vault_initial_root_token ~/.jenkins_dns

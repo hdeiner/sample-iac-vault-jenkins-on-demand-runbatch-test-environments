@@ -11,17 +11,20 @@ To use this project, simply execute the following bash scripts.
 ./step_1_terraform_vault.sh
 ```
 1. Use terraform to create an appropriate AWS EC2 instance for Vault.
+2. Stores the Vault DNS at ~/.vault_dns
 
 ```bash
 ./step_2_provision_vault.sh
 ```
 1. Use bolt to upload and execute the provisioning script on the Vault server.
 2. The script sets up Docker on the EC2 instance, creates a Docker container from the latest Hasicorp supported DockerHub version of Vault, initializes the Vault instance, and then unseals the fresh Vault instance.
+3. Stores the unsealed token for future access at ~/.vault_initial_root_token
 
 ```bash
 ./step_3_terraform_jenkins.sh
 ```
 1. Use terraform to create an appropriate AWS EC2 instance for Jenkins.
+2. Stores the Jenkins DNS at ~/.jenkins_dns
 
 ```bash
 ./step_4_provision_jenkins.sh

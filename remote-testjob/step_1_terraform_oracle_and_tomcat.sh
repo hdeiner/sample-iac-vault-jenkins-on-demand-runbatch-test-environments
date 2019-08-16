@@ -9,9 +9,9 @@ echo `terraform output oracle_dns | grep -o '".*"' | cut -d '"' -f2` > ../.oracl
 echo `terraform output tomcat_dns | grep -o '".*"' | cut -d '"' -f2` > ../.tomcat_dns
 cd ..
 
-export VAULT_DNS=$(echo `cat ./.vault_dns`)
+export VAULT_DNS=$(echo `cat ~/.vault_dns`)
 echo "VAULT at "$VAULT_DNS
-export VAULT_TOKEN=$(echo `cat ./.vault_initial_root_token`)
+export VAULT_TOKEN=$(echo `cat ~/.vault_initial_root_token`)
 echo "VAULT_TOKEN is "$VAULT_TOKEN
 
 export ORACLE=$(echo `cat ./.oracle_dns`)

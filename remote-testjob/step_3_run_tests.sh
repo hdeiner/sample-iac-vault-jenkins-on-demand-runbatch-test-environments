@@ -3,9 +3,9 @@
 figlet -w 120 -f standard "Run Tests"
 
 export RUNBATCH=$(echo `cat ./.runbatch`)
-export VAULT_DNS=$(echo `cat ./.vault_dns`)
+export VAULT_DNS=$(echo `cat ~/.vault_dns`)
 echo "VAULT at "$VAULT_DNS
-export VAULT_TOKEN=$(echo `cat ./.vault_initial_root_token`)
+export VAULT_TOKEN=$(echo `cat ~/.vault_initial_root_token`)
 echo "VAULT_TOKEN is "$VAULT_TOKEN
 
 vault login -address="http://$VAULT_DNS:8200" $VAULT_TOKEN
