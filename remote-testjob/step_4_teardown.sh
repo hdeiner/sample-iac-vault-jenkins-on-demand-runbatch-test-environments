@@ -2,7 +2,7 @@
 
 figlet -w 120 -f standard "Teardown Everything"
 
-cd terraform-oracle-tomcat
+cd remote-testjob/terraform-oracle-tomcat
 terraform destroy -auto-approve
 cd ..
 

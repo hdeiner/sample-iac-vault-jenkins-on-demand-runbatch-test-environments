@@ -59,5 +59,3 @@ else
     vault kv put -address="http://$VAULT_DNS:8200" SYSTEMS_CONFIG/$RUNBATCH/tomcat/status status="smoke test failed"
 fi
 rm temp
-
-cd ..

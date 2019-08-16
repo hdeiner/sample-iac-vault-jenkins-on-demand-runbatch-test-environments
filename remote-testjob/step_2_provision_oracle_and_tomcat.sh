@@ -108,4 +108,3 @@ echo "remote execution: home/ubuntu/provision_tomcat.sh"
 bolt command run '/home/ubuntu/provision_tomcat.sh' --nodes $TOMCAT_DNS --user 'ubuntu' --no-host-key-check
 
 vault kv put -address="http://$VAULT_DNS:8200" SYSTEMS_CONFIG/$RUNBATCH/tomcat/status status="provisioned"
-cd ..
