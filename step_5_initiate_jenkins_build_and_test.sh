@@ -21,15 +21,19 @@ while true ; do
 done
 rm tmp.txt
 
-figlet -w 160 -f slant "Put credentia;s into Jenkins"
-# Use my credentials for ssh
+figlet -w 160 -f slant "ssh credentials for Jenkins"
+
 docker exec jenkins mkdir /var/jenkins_home/.ssh
-docker cp /home/howarddeiner/.ssh/id_rsa.pub jenkins:/var/jenkins_home/.ssh/id_rsa.pub
+docker exec jenkins ssh-keygen -t rsa -b 2048 -C "comment" -P "examplePassphrase" -f "/var/jenkins_home/.ssh/id_rsa.pub" -q
+
+figlet -w 160 -f slant "AWS credentials for Jenkins"
 
 # Use my credentials for ssh
 docker exec jenkins mkdir /var/jenkins_home/.aws
 docker cp /home/howarddeiner/.aws/config jenkins:/var/jenkins_home/.aws/config
 docker cp /home/howarddeiner/.aws/credentials jenkins:/var/jenkins_home/.aws/credentials
+
+figlet -w 160 -f slant "Burn in Vault access into Jenkins"
 
 # Burn in Vault access
 docker cp /home/howarddeiner/.vault_dns jenkins:/var/jenkins_home/.vault_dns
