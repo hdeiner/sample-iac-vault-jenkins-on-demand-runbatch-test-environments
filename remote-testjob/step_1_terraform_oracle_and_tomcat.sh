@@ -2,7 +2,7 @@
 
 figlet -w 120 -f standard "Terraform Oracle and Tomcat"
 
-cd terraform-oracle-tomcat
+cd ./terraform-oracle-tomcat
 terraform init
 terraform apply -auto-approve
 echo `terraform output oracle_dns | grep -o '".*"' | cut -d '"' -f2` > ../.oracle_dns

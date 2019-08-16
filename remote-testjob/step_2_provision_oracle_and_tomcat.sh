@@ -2,6 +2,9 @@
 
 figlet -w 120 -f standard "Provision Oracle and Tomcat"
 
+# This CD is abnormal.  It is happening because we are storing the remote-testjob in it's own directory, rather than it's natural root.
+cd remote-testjob
+
 export RUNBATCH=$(echo `cat ./.runbatch`)
 export VAULT_DNS=$(echo `cat ~/.vault_dns`)
 echo "VAULT at "$VAULT_DNS
@@ -85,7 +88,6 @@ liquibase --changeLogFile=src/main/db/changelog.xml update
 vault kv put -address="http://$VAULT_DNS:8200" SYSTEMS_CONFIG/$RUNBATCH/oracle/status status="test database created"
 
 echo "Build fresh war for Tomcat deployment"
-cd remote-testjob
 mvn -q clean compile war:war
 
 echo "Build the oracleConfig.properties files for Tomcat war to run with"
