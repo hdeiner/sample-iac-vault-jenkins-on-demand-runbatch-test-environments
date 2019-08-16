@@ -1,0 +1,45 @@
+<project>
+    <description>Description for sample-iac-vault-jenkins-on-demand-runbatch-test-environments</description>
+    <keepDependencies>false</keepDependencies>
+    <properties>
+        <hudson.plugins.jira.JiraProjectProperty plugin="jira@3.0.8"/>
+    </properties>
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@3.11.0">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+            <hudson.plugins.git.UserRemoteConfig>
+                <url>https://github.com/hdeiner/sample-iac-vault-jenkins-on-demand-runbatch-test-environments.git</url>
+            </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+            <hudson.plugins.git.BranchSpec>
+                <name>*/master</name>
+            </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions/>
+    </scm>
+    <canRoam>true</canRoam>
+    <disabled>false</disabled>
+    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+    <triggers/>
+    <concurrentBuild>false</concurrentBuild>
+    <builders>
+        <hudson.tasks.Shell>
+            <command>/var/jenkins_home/workspace/TESTJOB/remote-testjob/step_1_terraform_oracle_and_tomcat.sh</command>
+        </hudson.tasks.Shell>
+        <hudson.tasks.Shell>
+            <command>/var/jenkins_home/workspace/TESTJOB/remote-testjob/step_2_provision_oracle_and_tomcat.sh</command>
+        </hudson.tasks.Shell>
+        <hudson.tasks.Shell>
+            <command>/var/jenkins_home/workspace/TESTJOB/remote-testjob/step_3_run_tests.sh</command>
+        </hudson.tasks.Shell>
+        <hudson.tasks.Shell>
+            <command>/var/jenkins_home/workspace/TESTJOB/remote-testjob/step_4_teardown.sh</command>
+        </hudson.tasks.Shell>
+    </builders>
+    <publishers/>
+    <buildWrappers/>
+</project>
