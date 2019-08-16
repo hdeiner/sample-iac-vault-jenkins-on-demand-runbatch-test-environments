@@ -1,5 +1,5 @@
 resource "aws_security_group" "oracle" {
-  name        = "sample-iac-vault-jenkins-on-demand-runbatch-test-environments"
+  name        = "sample-iac-vault-jenkins-on-demand-runbatch-test-environments-oracle"
   description = "sample-iac-vault-jenkins-on-demand-runbatch-test-environments Oracle Access"
   ingress {
     protocol  = "tcp"

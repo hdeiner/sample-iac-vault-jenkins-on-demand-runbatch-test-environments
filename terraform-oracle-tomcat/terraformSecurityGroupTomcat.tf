@@ -1,5 +1,5 @@
 resource "aws_security_group" "tomcat" {
-  name        = "sample-iac-vault-jenkins-on-demand-runbatch-test-environments"
+  name        = "sample-iac-vault-jenkins-on-demand-runbatch-test-environments-tomcat"
   description = "sample-iac-vault-jenkins-on-demand-runbatch-test-environments Tomcat Access"
   ingress {
     protocol  = "tcp"
