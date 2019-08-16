@@ -85,6 +85,7 @@ liquibase --changeLogFile=src/main/db/changelog.xml update
 vault kv put -address="http://$VAULT_DNS:8200" SYSTEMS_CONFIG/$RUNBATCH/oracle/status status="test database created"
 
 echo "Build fresh war for Tomcat deployment"
+cd remote-testjob
 mvn -q clean compile war:war
 
 echo "Build the oracleConfig.properties files for Tomcat war to run with"
@@ -105,3 +106,4 @@ echo "remote execution: home/ubuntu/provision_tomcat.sh"
 bolt command run '/home/ubuntu/provision_tomcat.sh' --nodes $TOMCAT_DNS --user 'ubuntu' --no-host-key-check
 
 vault kv put -address="http://$VAULT_DNS:8200" SYSTEMS_CONFIG/$RUNBATCH/tomcat/status status="provisioned"
+cd ..
