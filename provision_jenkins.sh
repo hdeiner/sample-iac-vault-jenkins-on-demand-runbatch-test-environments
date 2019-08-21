@@ -16,7 +16,7 @@ echo "Start the Jenkins server"
 sudo docker network create -d bridge mynetwork
 sudo docker run -d -p 80:8080 -p 8200:8200 -p 50000:50000 -v jenkins_home:/var/jenkins_home --name jenkins howarddeiner/jenkins:latest
 
-figlet -w 160 -f slant "Waiting for Jenkins to start"
+echo "Waiting for Jenkins to start"
 while true ; do
   curl -s localhost > tmp.txt
   result=$(grep -c "Dashboard \[Jenkins\]" tmp.txt)

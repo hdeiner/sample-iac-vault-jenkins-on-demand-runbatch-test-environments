@@ -32,8 +32,6 @@ To use this project, simply execute the following bash scripts.
 1. Create a DockerHub image for Jenkins that automates the unlocking and plugin provisioning for the CI server.  
 2. Use bolt to upload and execute the provisioning script on the Jenkins server.
 3. The script sets up Docker on the EC2 instance, creates a Docker container from the DockerHub image we just created, and initializes Jenkins.
-4. XYZZY Use Jenkins API to create a job (this project!), which will clone this repository and execute the next script on the AWS EC2 Jenkins Instance).
-   /var/jenkins_home/workspace/TEST/build_1_run_unit_tests.sh
 
 ```bash
 ./step_5_initiate_jenkins_build_and_test.sh

@@ -5,9 +5,7 @@ figlet -w 160 -f standard "Provision Vault"
 export VAULT_DNS=$(echo `cat ~/.vault_dns`)
 echo "VAULT at "$VAULT_DNS
 
-figlet -f slant "Upload vault.init.sh and friends"
-echo "remote execution: rm -rf /home/ubuntu/vault'"
-bolt command run 'rm -rf /home/ubuntu/vault' --nodes $VAULT_DNS --user 'ubuntu' --no-host-key-check
+figlet -f slant "Upload and run vault.init.sh"
 echo "remote execution: mkdir /home/ubuntu/vault"
 bolt command run 'mkdir /home/ubuntu/vault' --nodes $VAULT_DNS --user 'ubuntu' --no-host-key-check
 echo "remote execution: mkdir /home/ubuntu/vault/config"
