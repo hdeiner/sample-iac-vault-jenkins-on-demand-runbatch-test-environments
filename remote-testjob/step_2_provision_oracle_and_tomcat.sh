@@ -3,10 +3,7 @@
 figlet -w 120 -f standard "Provision Oracle and Tomcat"
 
 # This CD is abnormal.  It is happening because we are storing the remote-testjob in it's own directory, rather than it's natural root.
-# cd remote-testjob
-
-echo "INCENTIVES/CI_BUILD/AWS_HOSTED_CONTAINERS/howard.deiner/"`date +%Y%m%d%H%M%S` > ./.runbatch
-export RUNBATCH=$(echo `cat ./.runbatch`)
+cd remote-testjob
 
 export RUNBATCH=$(echo `cat ./.runbatch`)
 export VAULT_DNS=$(echo `cat ~/.vault_dns`)

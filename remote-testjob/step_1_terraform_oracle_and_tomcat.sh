@@ -20,7 +20,7 @@ export TOMCAT=$(echo `cat ./.tomcat_dns`)
 echo "ORACLE at "$ORACLE
 echo "TOMCAT at "$TOMCAT
 
-echo "INCENTIVES/DESKTOP_TEST/AWS_HOSTED_CONTAINERS/howard.deiner/"`date +%Y%m%d%H%M%S` > ./.runbatch
+echo "INCENTIVES/CI_BUILD/AWS_HOSTED_CONTAINERS/howard.deiner/"`date +%Y%m%d%H%M%S` > ./.runbatch
 export RUNBATCH=$(echo `cat ./.runbatch`)
 
 vault login -address="http://$VAULT_DNS:8200" $VAULT_TOKEN
