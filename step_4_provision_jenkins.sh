@@ -4,6 +4,10 @@ figlet -w 160 -f standard "Provision Jenkins"
 
 figlet -w 160 -f slant "Build and Push Jenkins Docker Image"
 
+docker stop jenkins
+docker rm jenkins
+docker volume rm jenkins_home
+
 docker rmi howarddeiner/jenkins:latest
 
 docker login

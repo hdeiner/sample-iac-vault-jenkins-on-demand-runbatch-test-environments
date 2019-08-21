@@ -77,7 +77,7 @@ echo "ORACLE_PASSWORD is "$ORACLE_PASSWORD
 
 echo "Build the liquibase.properties file for Liquibase to run against"
 echo "driver: oracle.jdbc.driver.OracleDriver" > liquibase.properties
-echo "classpath: lib/ojdbc8.jar" >> liquibase.properties
+echo "classpath: lib/ojdbc6.jar" >> liquibase.properties
 echo "url: jdbc:oracle:thin:@$ORACLE_DNS:1521:xe" >> liquibase.properties
 echo "username: "$ORACLE_USER >> liquibase.properties
 echo "password: "$ORACLE_PASSWORD >> liquibase.properties

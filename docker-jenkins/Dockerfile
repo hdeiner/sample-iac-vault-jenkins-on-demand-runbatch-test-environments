@@ -30,7 +30,7 @@ RUN mv vault /usr/local/bin/
 RUN wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.7.0/liquibase-3.7.0-bin.tar.gz
 RUN tar zxvf liquibase-3.7.0-bin.tar.gz
 RUN chmod +x ./liquibase
-RUN mv liquibase /usr/local/bin
+RUN ln -s /liquibase /usr/local/bin/liquibase
 # Bolt
 RUN wget https://apt.puppet.com/puppet-tools-release-xenial.deb
 RUN dpkg -i puppet-tools-release-xenial.deb
