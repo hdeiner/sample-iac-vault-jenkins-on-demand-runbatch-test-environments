@@ -2,9 +2,9 @@
 
 figlet -w 160 -f standard "Initiate Jenkins TESTJOB"
 
-docker stop jenkins
-docker rm jenkins
-docker volume rm jenkins_home
+#docker stop jenkins
+#docker rm jenkins
+#docker volume rm jenkins_home
 
 #figlet -w 160 -f slant "Create Jenkins Docker Container"
 #docker run -d -p 80:8080 -p 8200:8200 -p 50000:50000 -v jenkins_home:/var/jenkins_home --name jenkins howarddeiner/jenkins:latest
@@ -44,6 +44,8 @@ docker volume rm jenkins_home
 # Retrieve the XML document for the TEST job on the Jenkins server
 # curl -X GET http://localhost/job/TEST/config.xml -u admin:admin
 #
+export JENKINS_DNS=$(echo `cat ./.jenkins_dns`)
+echo "JENKINS at "JENKINS_DNS
 
 figlet -w 160 -f slant "Create Jenkins TESTJOB"
 curl -s -XPOST "http://localhost/createItem?name=TESTJOB" -u admin:admin --data-binary @remote-testjob/jenkins_testjob.xml -H "Content-Type:text/xml"

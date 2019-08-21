@@ -70,3 +70,4 @@ bolt file upload '/home/howarddeiner/.vault_dns' '/var/jenkins_home/.vault_dns' 
 echo "upload: /home/howarddeiner/.vault_initial_root_token jenkins to /var/jenkins_home/.vault_initial_root_token jenkins"
 bolt file upload '/home/howarddeiner/.vault_initial_root_token jenkins' '/var/jenkins_home/.vault_initial_root_token jenkins' --nodes $VAULT_DNS --user 'ubuntu' --no-host-key-check
 
+vault kv put -address="http://$VAULT_DNS:8200" SYSTEMS_CONFIG/jenkins/status status="ready for work"
