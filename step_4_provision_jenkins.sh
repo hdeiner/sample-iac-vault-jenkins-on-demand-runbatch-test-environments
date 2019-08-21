@@ -10,4 +10,4 @@ docker login
 docker build docker-jenkins -t howarddeiner/jenkins:latest
 docker push howarddeiner/jenkins:latest
 
-NOW FOR THE HARD WORK OF TERRAFORMING AND PROVISIONING
+NOW FOR THE HARD WORK OF TERRAFORMING AND PROVISIONING for an AWS instance to house a container for this image

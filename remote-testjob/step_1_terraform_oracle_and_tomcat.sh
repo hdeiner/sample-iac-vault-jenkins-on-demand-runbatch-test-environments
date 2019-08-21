@@ -24,7 +24,8 @@ echo "INCENTIVES/DESKTOP_TEST/AWS_HOSTED_CONTAINERS/howard.deiner/"`date +%Y%m%d
 export RUNBATCH=$(echo `cat ./.runbatch`)
 
 vault login -address="http://$VAULT_DNS:8200" $VAULT_TOKEN
-vault secrets enable -address="http://$VAULT_DNS:8200" -version=2 -path=SYSTEMS_CONFIG kv
+
+#vault secrets enable -address="http://$VAULT_DNS:8200" -version=2 -path=SYSTEMS_CONFIG kv
 
 vault kv put -address="http://$VAULT_DNS:8200" SYSTEMS_CONFIG/$RUNBATCH/oracle/dns dns=$ORACLE
 vault kv put -address="http://$VAULT_DNS:8200" SYSTEMS_CONFIG/$RUNBATCH/oracle/status status="not provisioned"

@@ -24,11 +24,12 @@ rm tmp.txt
 figlet -w 160 -f slant "ssh credentials for Jenkins"
 
 docker exec jenkins mkdir /var/jenkins_home/.ssh
-docker exec jenkins ssh-keygen -t rsa -b 2048 -C "comment" -P "examplePassphrase" -f "/var/jenkins_home/.ssh/id_rsa.pub" -q
+docker exec jenkins ssh-keygen -t rsa -b 2048 -C "comment" -P "examplePassphrase" -f "/var/jenkins_home/.ssh/id_rsa" -q
+#docker exec jenkins ssh-keygen -C "comment" -P "examplePassphrase" -f "/var/jenkins_home/.ssh/id_rsa" -q
 
 figlet -w 160 -f slant "AWS credentials for Jenkins"
 
-# Use my credentials for ssh
+# Use my credentials for AWS
 docker exec jenkins mkdir /var/jenkins_home/.aws
 docker cp /home/howarddeiner/.aws/config jenkins:/var/jenkins_home/.aws/config
 docker cp /home/howarddeiner/.aws/credentials jenkins:/var/jenkins_home/.aws/credentials
