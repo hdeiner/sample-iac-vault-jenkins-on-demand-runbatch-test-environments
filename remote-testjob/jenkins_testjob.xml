@@ -28,16 +28,16 @@
     <concurrentBuild>false</concurrentBuild>
     <builders>
         <hudson.tasks.Shell>
-            <command>./remote-testjob/step_1_terraform_oracle_and_tomcat.sh</command>
+            <command>/bin/bash ./remote-testjob/step_1_terraform_oracle_and_tomcat.sh</command>
         </hudson.tasks.Shell>
         <hudson.tasks.Shell>
-            <command>./remote-testjob/step_2_provision_oracle_and_tomcat.sh</command>
+            <command>/bin/bash ./remote-testjob/step_2_provision_oracle_and_tomcat.sh</command>
         </hudson.tasks.Shell>
         <hudson.tasks.Shell>
-            <command>./remote-testjob/step_3_run_tests.sh</command>
+            <command>/bin/bash ./remote-testjob/step_3_run_tests.sh</command>
         </hudson.tasks.Shell>
         <hudson.tasks.Shell>
-            <command>./remote-testjob/step_4_teardown.sh</command>
+            <command>/bin/bash ./remote-testjob/step_4_teardown.sh</command>
         </hudson.tasks.Shell>
     </builders>
     <publishers/>
