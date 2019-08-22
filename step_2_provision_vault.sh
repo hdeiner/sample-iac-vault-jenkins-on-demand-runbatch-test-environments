@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 figlet -w 160 -f standard "Provision Vault"
 

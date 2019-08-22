@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 figlet -w 120 -f standard "Teardown Everything"
 
