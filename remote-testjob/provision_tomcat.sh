@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # First, add the GPG key for the official Docker repository to the system
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
