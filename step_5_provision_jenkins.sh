@@ -2,20 +2,6 @@
 
 figlet -w 160 -f standard "Provision Jenkins"
 
-figlet -w 160 -f slant "Build and Push Jenkins Docker Image"
-
-docker stop jenkins
-docker rm jenkins
-docker volume rm jenkins_home
-
-docker rmi howarddeiner/jenkins:latest
-
-docker login
-docker build docker-jenkins -t howarddeiner/jenkins:latest
-docker push howarddeiner/jenkins:latest
-
-figlet -w 120 -f standard "Provision Jenkins"
-
 export VAULT_DNS=$(echo `cat ~/.vault_dns`)
 echo "VAULT at "$VAULT_DNS
 export VAULT_TOKEN=$(echo `cat ~/.vault_initial_root_token`)

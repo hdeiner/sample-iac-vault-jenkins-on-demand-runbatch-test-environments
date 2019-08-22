@@ -21,20 +21,29 @@ To use this project, simply execute the following bash scripts.
 3. Stores the unsealed token for future access at ~/.vault_initial_root_token
 
 ```bash
-./step_3_terraform_jenkins.sh
+./step_3_create_docker_jenkins_image.sh
+```
+1. Create a DockerHub image for Jenkins that automates the unlocking and plugin provisioning for the CI server.
+2. Stores the image in dockerhub (for now).
+
+```bash
+./step_4_terraform_jenkins.sh
 ```
 1. Use terraform to create an appropriate AWS EC2 instance for Jenkins.
 2. Stores the Jenkins DNS at ~/.jenkins_dns
 
 ```bash
-./step_4_provision_jenkins.sh
+./step_5_provision_jenkins.sh
 ```
-1. Create a DockerHub image for Jenkins that automates the unlocking and plugin provisioning for the CI server.  
-2. Use bolt to upload and execute the provisioning script on the Jenkins server.
-3. The script sets up Docker on the EC2 instance, creates a Docker container from the DockerHub image we just created, and initializes Jenkins.
+1. Use bolt to upload and execute the provisioning script on the Jenkins server.
+2. The script sets up Docker on the EC2 instance, creates a Docker container from the DockerHub image we just created, and initializes Jenkins.
+3. Use bolt to add some secrets into the Jenkins instance (running in the Docker container on the AWS EC2 instance)
+- ssh credentials (uses mine for now)
+- AWS credentials (uses mine for now)
+- Vault access (the DNS and token for access)
 
 ```bash
-./step_5_initiate_jenkins_build_and_test.sh
+./step_6_initiate_jenkins_build_and_test.sh
 ```
 1. Utilizing the Jenkins REST API, create a TESTJOB on the Jenkins server we created.
 2. Utilizing the Jenkins REST API, run the TESTJOB on the Jenkins server we created.  This will
@@ -44,7 +53,7 @@ To use this project, simply execute the following bash scripts.
 - Teardown everything
 
 ```bash
-./build_and_test_6_teardown.sh
+./build_and_test_7_teardown.sh
 ```
 1. Use the power of terraform to destroy all that which it created
 2. Clean up other debris, such as hidden files for dns names of Vault and Jenkins servers, tokens, etc.
