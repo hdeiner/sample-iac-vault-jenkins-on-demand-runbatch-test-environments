@@ -14,7 +14,7 @@ export VAULT_TOKEN=$(echo `cat ~/.vault_initial_root_token`)
 echo "VAULT_TOKEN is "$VAULT_TOKEN
 
 export JENKINS=$(echo `cat ~/.jenkins_dns`)
-echo "JENKINS at "JENKINS
+echo "JENKINS at "$JENKINS
 
 vault login -address="http://$VAULT_DNS:8200" $VAULT_TOKEN
 vault secrets enable -address="http://$VAULT_DNS:8200" -version=2 -path=SYSTEMS_CONFIG kv

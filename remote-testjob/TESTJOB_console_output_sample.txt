@@ -1,0 +1,852 @@
+Console Output
+Started by user unknown or anonymous
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/TESTJOB
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/hdeiner/sample-iac-vault-jenkins-on-demand-runbatch-test-environments.git
+ > git init /var/jenkins_home/workspace/TESTJOB # timeout=10
+Fetching upstream changes from https://github.com/hdeiner/sample-iac-vault-jenkins-on-demand-runbatch-test-environments.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/hdeiner/sample-iac-vault-jenkins-on-demand-runbatch-test-environments.git +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url https://github.com/hdeiner/sample-iac-vault-jenkins-on-demand-runbatch-test-environments.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/hdeiner/sample-iac-vault-jenkins-on-demand-runbatch-test-environments.git # timeout=10
+Fetching upstream changes from https://github.com/hdeiner/sample-iac-vault-jenkins-on-demand-runbatch-test-environments.git
+ > git fetch --tags --progress https://github.com/hdeiner/sample-iac-vault-jenkins-on-demand-runbatch-test-environments.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 0bc62bccf100f8d9bb307a6d6752a80ecce33276 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 0bc62bccf100f8d9bb307a6d6752a80ecce33276
+Commit message: "Initial commit."
+First time build. Skipping changelog.
+[TESTJOB] $ /bin/sh -xe /tmp/jenkins7036769164609960359.sh
++ /bin/bash ./remote-testjob/step_1_terraform_oracle_and_tomcat.sh
+ _____                    __                         ___                 _                        _
+|_   _|__ _ __ _ __ __ _ / _| ___  _ __ _ __ ___    / _ \ _ __ __ _  ___| | ___    __ _ _ __   __| |
+  | |/ _ \ '__| '__/ _` | |_ / _ \| '__| '_ ` _ \  | | | | '__/ _` |/ __| |/ _ \  / _` | '_ \ / _` |
+  | |  __/ |  | | | (_| |  _| (_) | |  | | | | | | | |_| | | | (_| | (__| |  __/ | (_| | | | | (_| |
+  |_|\___|_|  |_|  \__,_|_|  \___/|_|  |_| |_| |_|  \___/|_|  \__,_|\___|_|\___|  \__,_|_| |_|\__,_|
+
+ _____                         _
+|_   _|__  _ __ ___   ___ __ _| |_
+  | |/ _ \| '_ ` _ \ / __/ _` | __|
+  | | (_) | | | | | | (_| (_| | |_
+  |_|\___/|_| |_| |_|\___\__,_|\__|
+
+
+[0m[1mInitializing the backend...[0m
+
+[0m[1mInitializing provider plugins...[0m
+- Checking for available provider plugins...
+- Downloading plugin for provider "aws" (terraform-providers/aws) 2.24.0...
+
+The following providers do not have any version constraints in configuration,
+so the latest version was installed.
+
+To prevent automatic upgrades to new major versions that may contain breaking
+changes, it is recommended to add version = "..." constraints to the
+corresponding provider blocks in configuration, with the constraint strings
+suggested below.
+
+* provider.aws: version = "~> 2.24"
+
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+[0m[1maws_key_pair.oracle_tomcat_key_pair: Creating...[0m[0m
+[0m[1maws_security_group.oracle: Creating...[0m[0m
+[0m[1maws_security_group.tomcat: Creating...[0m[0m
+[0m[1maws_key_pair.oracle_tomcat_key_pair: Creation complete after 0s [id=oracle_tomcat_key_pair][0m[0m
+[0m[1maws_security_group.tomcat: Creation complete after 2s [id=sg-03da0a639257816f1][0m[0m
+[0m[1maws_security_group.oracle: Creation complete after 2s [id=sg-0ba561d86d02a5cdd][0m[0m
+[0m[1maws_instance.ec2_tomcat[0]: Creating...[0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Creating...[0m[0m
+[0m[1maws_instance.ec2_tomcat[0]: Still creating... [10s elapsed][0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Still creating... [10s elapsed][0m[0m
+[0m[1maws_instance.ec2_tomcat[0]: Still creating... [20s elapsed][0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Still creating... [20s elapsed][0m[0m
+[0m[1maws_instance.ec2_tomcat[0]: Still creating... [30s elapsed][0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Still creating... [30s elapsed][0m[0m
+[0m[1maws_instance.ec2_tomcat[0]: Creation complete after 31s [id=i-052453b62b137dd5a][0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Still creating... [40s elapsed][0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Still creating... [50s elapsed][0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Creation complete after 51s [id=i-0fe21ef2bda2c889e][0m[0m
+[0m[1m[32m
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.[0m
+[0m[1m[32m
+Outputs:
+
+oracle_dns = [
+  [
+    "ec2-54-88-93-242.compute-1.amazonaws.com",
+  ],
+]
+oracle_ip = [
+  [
+    "54.88.93.242",
+  ],
+]
+tomcat_dns = [
+  [
+    "ec2-54-209-176-138.compute-1.amazonaws.com",
+  ],
+]
+tomcat_ip = [
+  [
+    "54.209.176.138",
+  ],
+][0m
+VAULT at ec2-100-24-27-30.compute-1.amazonaws.com
+VAULT_TOKEN is s.pobTR3ohime1FiH2fF5ncnwT
+ORACLE at ec2-54-88-93-242.compute-1.amazonaws.com
+TOMCAT at ec2-54-209-176-138.compute-1.amazonaws.com
+WARNING! The VAULT_TOKEN environment variable is set! This takes precedence
+over the value set by this command. To use the value set by this command,
+unset the VAULT_TOKEN environment variable or set it to the token displayed
+below.
+
+Success! You are now authenticated. The token information displayed below
+is already stored in the token helper. You do NOT need to run "vault login"
+again. Future Vault requests will automatically use this token.
+
+Key                  Value
+---                  -----
+token                s.pobTR3ohime1FiH2fF5ncnwT
+token_accessor       GsNEBIMc8A6X0QbnYgeVD1Mq
+token_duration       ∞
+token_renewable      false
+token_policies       ["root"]
+identity_policies    []
+policies             ["root"]
+Key              Value
+---              -----
+created_time     2019-08-22T14:38:19.659083922Z
+deletion_time    n/a
+destroyed        false
+version          1
+Key              Value
+---              -----
+created_time     2019-08-22T14:38:19.690244049Z
+deletion_time    n/a
+destroyed        false
+version          1
+Key              Value
+---              -----
+created_time     2019-08-22T14:38:19.720757756Z
+deletion_time    n/a
+destroyed        false
+version          1
+Key              Value
+---              -----
+created_time     2019-08-22T14:38:19.751512648Z
+deletion_time    n/a
+destroyed        false
+version          1
+[TESTJOB] $ /bin/sh -xe /tmp/jenkins6350703139595604209.sh
++ /bin/bash ./remote-testjob/step_2_provision_oracle_and_tomcat.sh
+ ____                 _     _                ___                 _                        _
+|  _ \ _ __ _____   _(_)___(_) ___  _ __    / _ \ _ __ __ _  ___| | ___    __ _ _ __   __| |
+| |_) | '__/ _ \ \ / / / __| |/ _ \| '_ \  | | | | '__/ _` |/ __| |/ _ \  / _` | '_ \ / _` |
+|  __/| | | (_) \ V /| \__ \ | (_) | | | | | |_| | | | (_| | (__| |  __/ | (_| | | | | (_| |
+|_|   |_|  \___/ \_/ |_|___/_|\___/|_| |_|  \___/|_|  \__,_|\___|_|\___|  \__,_|_| |_|\__,_|
+
+ _____                         _
+|_   _|__  _ __ ___   ___ __ _| |_
+  | |/ _ \| '_ ` _ \ / __/ _` | __|
+  | | (_) | | | | | | (_| (_| | |_
+  |_|\___/|_| |_| |_|\___\__,_|\__|
+
+VAULT at ec2-100-24-27-30.compute-1.amazonaws.com
+VAULT_TOKEN is s.pobTR3ohime1FiH2fF5ncnwT
+WARNING! The VAULT_TOKEN environment variable is set! This takes precedence
+over the value set by this command. To use the value set by this command,
+unset the VAULT_TOKEN environment variable or set it to the token displayed
+below.
+
+Success! You are now authenticated. The token information displayed below
+is already stored in the token helper. You do NOT need to run "vault login"
+again. Future Vault requests will automatically use this token.
+
+Key                  Value
+---                  -----
+token                s.pobTR3ohime1FiH2fF5ncnwT
+token_accessor       GsNEBIMc8A6X0QbnYgeVD1Mq
+token_duration       ∞
+token_renewable      false
+token_policies       ["root"]
+identity_policies    []
+policies             ["root"]
+====== Metadata ======
+Key              Value
+---              -----
+created_time     2019-08-22T14:38:19.659083922Z
+deletion_time    n/a
+destroyed        false
+version          1
+
+=== Data ===
+Key    Value
+---    -----
+dns    ec2-54-88-93-242.compute-1.amazonaws.com
+====== Metadata ======
+Key              Value
+---              -----
+created_time     2019-08-22T14:38:19.720757756Z
+deletion_time    n/a
+destroyed        false
+version          1
+
+=== Data ===
+Key    Value
+---    -----
+dns    ec2-54-209-176-138.compute-1.amazonaws.com
+ORACLE at ec2-54-88-93-242.compute-1.amazonaws.com
+TOMCAT at ec2-54-209-176-138.compute-1.amazonaws.com
+Provision Oracle
+upload: provision_oracle.sh to /home/ubuntu/provision_oracle.sh
+[33mBolt collects data about how you use it. You can opt out of providing this data.
+
+To disable analytics data collection, add this line to ~/.puppetlabs/bolt/analytics.yaml :
+  disabled: true
+
+Read more about what data Bolt collects and why here:
+  https://puppet.com/docs/bolt/latest/bolt_installing.html#concept-8242
+[0m
+[0mStarted on ec2-54-88-93-242.compute-1.amazonaws.com...
+Finished on ec2-54-88-93-242.compute-1.amazonaws.com:
+  Uploaded 'provision_oracle.sh' to 'ec2-54-88-93-242.compute-1.amazonaws.com:/home/ubuntu/provision_oracle.sh'
+Successful on 1 node: ec2-54-88-93-242.compute-1.amazonaws.com
+Ran on 1 node in 0.61 seconds
+remote execution: chmod +x /home/ubuntu/provision_oracle.sh
+Started on ec2-54-88-93-242.compute-1.amazonaws.com...
+Finished on ec2-54-88-93-242.compute-1.amazonaws.com:
+Successful on 1 node: ec2-54-88-93-242.compute-1.amazonaws.com
+Ran on 1 node in 1.09 seconds
+remote execution: /home/ubuntu/provision_oracle.sh
+Started on ec2-54-88-93-242.compute-1.amazonaws.com...
+Finished on ec2-54-88-93-242.compute-1.amazonaws.com:
+  STDOUT:
+    OK
+    Selecting previously unselected package pigz.
+    (Reading database ...
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 51263 files and directories currently installed.)
+    Preparing to unpack .../pigz_2.3.1-2_amd64.deb ...
+    Unpacking pigz (2.3.1-2) ...
+    Selecting previously unselected package aufs-tools.
+    Preparing to unpack .../aufs-tools_1%3a3.2+20130722-1.1ubuntu1_amd64.deb ...
+    Unpacking aufs-tools (1:3.2+20130722-1.1ubuntu1) ...
+    Selecting previously unselected package cgroupfs-mount.
+    Preparing to unpack .../cgroupfs-mount_1.2_all.deb ...
+    Unpacking cgroupfs-mount (1.2) ...
+    Selecting previously unselected package containerd.io.
+    Preparing to unpack .../containerd.io_1.2.6-3_amd64.deb ...
+    Unpacking containerd.io (1.2.6-3) ...
+    Selecting previously unselected package docker-ce-cli.
+    Preparing to unpack .../docker-ce-cli_5%3a19.03.1~3-0~ubuntu-xenial_amd64.deb ...
+    Unpacking docker-ce-cli (5:19.03.1~3-0~ubuntu-xenial) ...
+    Selecting previously unselected package docker-ce.
+    Preparing to unpack .../docker-ce_5%3a19.03.1~3-0~ubuntu-xenial_amd64.deb ...
+    Unpacking docker-ce (5:19.03.1~3-0~ubuntu-xenial) ...
+    Selecting previously unselected package libltdl7:amd64.
+    Preparing to unpack .../libltdl7_2.4.6-0.1_amd64.deb ...
+    Unpacking libltdl7:amd64 (2.4.6-0.1) ...
+    Processing triggers for man-db (2.7.5-1) ...
+    Processing triggers for libc-bin (2.23-0ubuntu10) ...
+    Processing triggers for ureadahead (0.100.0-19) ...
+    Processing triggers for systemd (229-4ubuntu21.2) ...
+    Setting up pigz (2.3.1-2) ...
+    Setting up aufs-tools (1:3.2+20130722-1.1ubuntu1) ...
+    Setting up cgroupfs-mount (1.2) ...
+    Setting up containerd.io (1.2.6-3) ...
+    Setting up docker-ce-cli (5:19.03.1~3-0~ubuntu-xenial) ...
+    Setting up docker-ce (5:19.03.1~3-0~ubuntu-xenial) ...
+    Setting up libltdl7:amd64 (2.4.6-0.1) ...
+    Processing triggers for libc-bin (2.23-0ubuntu10) ...
+    Processing triggers for systemd (229-4ubuntu21.2) ...
+    Processing triggers for ureadahead (0.100.0-19) ...
+    Bring up Oracle
+    f0adb823d5a0bbfaf5c2969e15235bcacb69f9ba6c46de6bf394d6c1a557f906
+    27201488fd1b8a977751f9bed2053ce7d8236cd918ea1abbbf24a5fc5a4b2471
+    Waiting for Oracle to start
+    Oracle has started
+  STDERR:
+    debconf: unable to initialize frontend: Dialog
+    debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+    debconf: falling back to frontend: Readline
+    debconf: unable to initialize frontend: Readline
+    debconf: (This frontend requires a controlling tty.)
+    debconf: falling back to frontend: Teletype
+    dpkg-preconfigure: unable to re-open stdin:
+    Unable to find image 'xrdj6c/oracle-11g-xe:latest' locally
+    latest: Pulling from xrdj6c/oracle-11g-xe
+    [DEPRECATION NOTICE] registry v2 schema1 support will be removed in an upcoming release. Please contact admins of the docker.io registry NOW to avoid future disruption.
+    8387d9ff0016: Pulling fs layer
+    3b52deaaf0ed: Pulling fs layer
+    4bd501fad6de: Pulling fs layer
+    a3ed95caeb02: Pulling fs layer
+    1b34c5fc1bc1: Pulling fs layer
+    e6aba188811b: Pulling fs layer
+    9c17192b3ee6: Pulling fs layer
+    1d2314034fa1: Pulling fs layer
+    150074700f95: Pulling fs layer
+    e9c8c73ef7d0: Pulling fs layer
+    1826356223b1: Pulling fs layer
+    484ab753a3cf: Pulling fs layer
+    e937e6642b37: Pulling fs layer
+    06f13ec5cc45: Pulling fs layer
+    72144582ac03: Pulling fs layer
+    10ae4a9456ba: Pulling fs layer
+    d88694680bfe: Pulling fs layer
+    7755293dfda3: Pulling fs layer
+    434c0a5c19a2: Pulling fs layer
+    10d988df8e5c: Pulling fs layer
+    910d64830919: Pulling fs layer
+    7fa44c4cf286: Pulling fs layer
+    6815fb67eced: Pulling fs layer
+    fa2fd4f89716: Pulling fs layer
+    150074700f95: Waiting
+    e9c8c73ef7d0: Waiting
+    1826356223b1: Waiting
+    484ab753a3cf: Waiting
+    e937e6642b37: Waiting
+    06f13ec5cc45: Waiting
+    72144582ac03: Waiting
+    10ae4a9456ba: Waiting
+    d88694680bfe: Waiting
+    7755293dfda3: Waiting
+    434c0a5c19a2: Waiting
+    10d988df8e5c: Waiting
+    910d64830919: Waiting
+    7fa44c4cf286: Waiting
+    6815fb67eced: Waiting
+    fa2fd4f89716: Waiting
+    a3ed95caeb02: Waiting
+    1b34c5fc1bc1: Waiting
+    e6aba188811b: Waiting
+    9c17192b3ee6: Waiting
+    1d2314034fa1: Waiting
+    4bd501fad6de: Download complete
+    3b52deaaf0ed: Verifying Checksum
+    3b52deaaf0ed: Download complete
+    a3ed95caeb02: Verifying Checksum
+    a3ed95caeb02: Download complete
+    9c17192b3ee6: Verifying Checksum
+    9c17192b3ee6: Download complete
+    1b34c5fc1bc1: Verifying Checksum
+    1b34c5fc1bc1: Download complete
+    1d2314034fa1: Verifying Checksum
+    1d2314034fa1: Download complete
+    e9c8c73ef7d0: Verifying Checksum
+    e9c8c73ef7d0: Download complete
+    150074700f95: Verifying Checksum
+    150074700f95: Download complete
+    484ab753a3cf: Verifying Checksum
+    484ab753a3cf: Download complete
+    1826356223b1: Verifying Checksum
+    1826356223b1: Download complete
+    e937e6642b37: Verifying Checksum
+    e937e6642b37: Download complete
+    8387d9ff0016: Verifying Checksum
+    8387d9ff0016: Download complete
+    10ae4a9456ba: Verifying Checksum
+    10ae4a9456ba: Download complete
+    d88694680bfe: Verifying Checksum
+    d88694680bfe: Download complete
+    06f13ec5cc45: Verifying Checksum
+    06f13ec5cc45: Download complete
+    434c0a5c19a2: Verifying Checksum
+    434c0a5c19a2: Download complete
+    10d988df8e5c: Verifying Checksum
+    10d988df8e5c: Download complete
+    910d64830919: Verifying Checksum
+    910d64830919: Download complete
+    7fa44c4cf286: Verifying Checksum
+    7fa44c4cf286: Download complete
+    72144582ac03: Verifying Checksum
+    72144582ac03: Download complete
+    6815fb67eced: Verifying Checksum
+    6815fb67eced: Download complete
+    fa2fd4f89716: Verifying Checksum
+    fa2fd4f89716: Download complete
+    7755293dfda3: Verifying Checksum
+    7755293dfda3: Download complete
+    8387d9ff0016: Pull complete
+    3b52deaaf0ed: Pull complete
+    4bd501fad6de: Pull complete
+    a3ed95caeb02: Pull complete
+    1b34c5fc1bc1: Pull complete
+    e6aba188811b: Pull complete
+    9c17192b3ee6: Pull complete
+    1d2314034fa1: Pull complete
+    150074700f95: Pull complete
+    e9c8c73ef7d0: Pull complete
+    1826356223b1: Pull complete
+    484ab753a3cf: Pull complete
+    e937e6642b37: Pull complete
+    06f13ec5cc45: Pull complete
+    72144582ac03: Pull complete
+    10ae4a9456ba: Pull complete
+    d88694680bfe: Pull complete
+    7755293dfda3: Pull complete
+    434c0a5c19a2: Pull complete
+    10d988df8e5c: Pull complete
+    910d64830919: Pull complete
+    7fa44c4cf286: Pull complete
+    6815fb67eced: Pull complete
+    fa2fd4f89716: Pull complete
+    Digest: sha256:3e171ae98af8aa4e117907ba80789613ad92a07741ebf609c909f69d01710296
+    Status: Downloaded newer image for xrdj6c/oracle-11g-xe:latest
+Successful on 1 node: ec2-54-88-93-242.compute-1.amazonaws.com
+Ran on 1 node in 114.25 seconds
+Key              Value
+---              -----
+created_time     2019-08-22T14:40:19.638059981Z
+deletion_time    n/a
+destroyed        false
+version          1
+Key              Value
+---              -----
+created_time     2019-08-22T14:40:19.672667082Z
+deletion_time    n/a
+destroyed        false
+version          1
+Key              Value
+---              -----
+created_time     2019-08-22T14:40:19.704482704Z
+deletion_time    n/a
+destroyed        false
+version          2
+====== Metadata ======
+Key              Value
+---              -----
+created_time     2019-08-22T14:40:19.638059981Z
+deletion_time    n/a
+destroyed        false
+version          1
+
+==== Data ====
+Key     Value
+---     -----
+user    system
+====== Metadata ======
+Key              Value
+---              -----
+created_time     2019-08-22T14:40:19.672667082Z
+deletion_time    n/a
+destroyed        false
+version          1
+
+====== Data ======
+Key         Value
+---         -----
+password    oracle
+ORACLE_USER is system
+ORACLE_PASSWORD is oracle
+Build the liquibase.properties file for Liquibase to run against
+liquibase.properties file=
+driver: oracle.jdbc.driver.OracleDriver
+classpath: lib/ojdbc6.jar
+url: jdbc:oracle:thin:@ec2-54-88-93-242.compute-1.amazonaws.com:1521:xe
+username: system
+password: oracle
+Run liquibase to create database schema and load sample data
+Starting Liquibase at Thu, 22 Aug 2019 14:40:20 UTC (version 3.7.0 built at 2019-07-16 02:26:39)
+Liquibase: Update has been successful.
+Key              Value
+---              -----
+created_time     2019-08-22T14:40:30.991503064Z
+deletion_time    n/a
+destroyed        false
+version          3
+Build fresh war for Tomcat deployment
+Build the oracleConfig.properties files for Tomcat war to run with
+Provision Tomcat
+upload: provision_tomcat.sh' to /home/ubuntu/provision_tomcat.sh
+Started on ec2-54-209-176-138.compute-1.amazonaws.com...
+Finished on ec2-54-209-176-138.compute-1.amazonaws.com:
+  Uploaded 'provision_tomcat.sh' to 'ec2-54-209-176-138.compute-1.amazonaws.com:/home/ubuntu/provision_tomcat.sh'
+Successful on 1 node: ec2-54-209-176-138.compute-1.amazonaws.com
+Ran on 1 node in 0.62 seconds
+remote execution: chmod +x /home/ubuntu/provision_tomcat.sh
+Started on ec2-54-209-176-138.compute-1.amazonaws.com...
+Finished on ec2-54-209-176-138.compute-1.amazonaws.com:
+Successful on 1 node: ec2-54-209-176-138.compute-1.amazonaws.com
+Ran on 1 node in 0.32 seconds
+upload: oracleConfig.properties' to /home/ubuntu/oracleConfig.properties
+Started on ec2-54-209-176-138.compute-1.amazonaws.com...
+Finished on ec2-54-209-176-138.compute-1.amazonaws.com:
+  Uploaded 'oracleConfig.properties' to 'ec2-54-209-176-138.compute-1.amazonaws.com:/home/ubuntu/oracleConfig.properties'
+Successful on 1 node: ec2-54-209-176-138.compute-1.amazonaws.com
+Ran on 1 node in 0.48 seconds
+upload: target/passwordAPI.war' to /home/ubuntu/passwordAPI.war
+Started on ec2-54-209-176-138.compute-1.amazonaws.com...
+Finished on ec2-54-209-176-138.compute-1.amazonaws.com:
+  Uploaded 'target/passwordAPI.war' to 'ec2-54-209-176-138.compute-1.amazonaws.com:/home/ubuntu/passwordAPI.war'
+Successful on 1 node: ec2-54-209-176-138.compute-1.amazonaws.com
+Ran on 1 node in 1.42 seconds
+remote execution: home/ubuntu/provision_tomcat.sh
+Started on ec2-54-209-176-138.compute-1.amazonaws.com...
+Finished on ec2-54-209-176-138.compute-1.amazonaws.com:
+  STDOUT:
+    OK
+    Selecting previously unselected package pigz.
+    (Reading database ...
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 51263 files and directories currently installed.)
+    Preparing to unpack .../pigz_2.3.1-2_amd64.deb ...
+    Unpacking pigz (2.3.1-2) ...
+    Selecting previously unselected package aufs-tools.
+    Preparing to unpack .../aufs-tools_1%3a3.2+20130722-1.1ubuntu1_amd64.deb ...
+    Unpacking aufs-tools (1:3.2+20130722-1.1ubuntu1) ...
+    Selecting previously unselected package cgroupfs-mount.
+    Preparing to unpack .../cgroupfs-mount_1.2_all.deb ...
+    Unpacking cgroupfs-mount (1.2) ...
+    Selecting previously unselected package containerd.io.
+    Preparing to unpack .../containerd.io_1.2.6-3_amd64.deb ...
+    Unpacking containerd.io (1.2.6-3) ...
+    Selecting previously unselected package docker-ce-cli.
+    Preparing to unpack .../docker-ce-cli_5%3a19.03.1~3-0~ubuntu-xenial_amd64.deb ...
+    Unpacking docker-ce-cli (5:19.03.1~3-0~ubuntu-xenial) ...
+    Selecting previously unselected package docker-ce.
+    Preparing to unpack .../docker-ce_5%3a19.03.1~3-0~ubuntu-xenial_amd64.deb ...
+    Unpacking docker-ce (5:19.03.1~3-0~ubuntu-xenial) ...
+    Selecting previously unselected package libltdl7:amd64.
+    Preparing to unpack .../libltdl7_2.4.6-0.1_amd64.deb ...
+    Unpacking libltdl7:amd64 (2.4.6-0.1) ...
+    Processing triggers for man-db (2.7.5-1) ...
+    Processing triggers for libc-bin (2.23-0ubuntu10) ...
+    Processing triggers for ureadahead (0.100.0-19) ...
+    Processing triggers for systemd (229-4ubuntu21.2) ...
+    Setting up pigz (2.3.1-2) ...
+    Setting up aufs-tools (1:3.2+20130722-1.1ubuntu1) ...
+    Setting up cgroupfs-mount (1.2) ...
+    Setting up containerd.io (1.2.6-3) ...
+    Setting up docker-ce-cli (5:19.03.1~3-0~ubuntu-xenial) ...
+    Setting up docker-ce (5:19.03.1~3-0~ubuntu-xenial) ...
+    Setting up libltdl7:amd64 (2.4.6-0.1) ...
+    Processing triggers for libc-bin (2.23-0ubuntu10) ...
+    Processing triggers for systemd (229-4ubuntu21.2) ...
+    Processing triggers for ureadahead (0.100.0-19) ...
+    Start the tomcat server
+    63b12beab7077a91eb9f0b528c3203b8049dd10971b562002578b9ee65602137
+    20123f2ef95871c5f34f6210b11543db60beb1f2022eaddd8af274a3290d4799
+    Waiting for Tomcat to start
+    Tomcat has started
+  STDERR:
+    debconf: unable to initialize frontend: Dialog
+    debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+    debconf: falling back to frontend: Readline
+    debconf: unable to initialize frontend: Readline
+    debconf: (This frontend requires a controlling tty.)
+    debconf: falling back to frontend: Teletype
+    dpkg-preconfigure: unable to re-open stdin:
+    Unable to find image 'tomcat:9.0.8-jre8' locally
+    9.0.8-jre8: Pulling from library/tomcat
+    0bd44ff9c2cf: Pulling fs layer
+    047670ddbd2a: Pulling fs layer
+    ea7d5dc89438: Pulling fs layer
+    4a05570971bb: Pulling fs layer
+    66f679cd5859: Pulling fs layer
+    89362eaac850: Pulling fs layer
+    d76c23323cb4: Pulling fs layer
+    f7a113d2d566: Pulling fs layer
+    f7ffd00be2be: Pulling fs layer
+    dd678d267c76: Pulling fs layer
+    6aca02fbd5f9: Pulling fs layer
+    d5d8fa47543f: Pulling fs layer
+    4a05570971bb: Waiting
+    66f679cd5859: Waiting
+    89362eaac850: Waiting
+    d76c23323cb4: Waiting
+    f7a113d2d566: Waiting
+    f7ffd00be2be: Waiting
+    dd678d267c76: Waiting
+    6aca02fbd5f9: Waiting
+    d5d8fa47543f: Waiting
+    ea7d5dc89438: Verifying Checksum
+    ea7d5dc89438: Download complete
+    047670ddbd2a: Verifying Checksum
+    047670ddbd2a: Download complete
+    4a05570971bb: Verifying Checksum
+    4a05570971bb: Download complete
+    89362eaac850: Verifying Checksum
+    89362eaac850: Download complete
+    66f679cd5859: Verifying Checksum
+    66f679cd5859: Download complete
+    f7a113d2d566: Verifying Checksum
+    f7a113d2d566: Download complete
+    f7ffd00be2be: Verifying Checksum
+    f7ffd00be2be: Download complete
+    dd678d267c76: Verifying Checksum
+    dd678d267c76: Download complete
+    0bd44ff9c2cf: Verifying Checksum
+    0bd44ff9c2cf: Download complete
+    d5d8fa47543f: Verifying Checksum
+    d5d8fa47543f: Download complete
+    6aca02fbd5f9: Verifying Checksum
+    6aca02fbd5f9: Download complete
+    d76c23323cb4: Verifying Checksum
+    d76c23323cb4: Download complete
+    0bd44ff9c2cf: Pull complete
+    047670ddbd2a: Pull complete
+    ea7d5dc89438: Pull complete
+    4a05570971bb: Pull complete
+    66f679cd5859: Pull complete
+    89362eaac850: Pull complete
+    d76c23323cb4: Pull complete
+    f7a113d2d566: Pull complete
+    f7ffd00be2be: Pull complete
+    dd678d267c76: Pull complete
+    6aca02fbd5f9: Pull complete
+    d5d8fa47543f: Pull complete
+    Digest: sha256:3659987eb8c96bef734ec6bd74cb883ed02df64890941683b45f978dae3c1111
+    Status: Downloaded newer image for tomcat:9.0.8-jre8
+Successful on 1 node: ec2-54-209-176-138.compute-1.amazonaws.com
+Ran on 1 node in 75.02 seconds
+Key              Value
+---              -----
+created_time     2019-08-22T14:42:10.439193138Z
+deletion_time    n/a
+destroyed        false
+version          2
+[TESTJOB] $ /bin/sh -xe /tmp/jenkins266087011156132260.sh
++ /bin/bash ./remote-testjob/step_3_run_tests.sh
+ ____                _____         _
+|  _ \ _   _ _ __   |_   _|__  ___| |_ ___
+| |_) | | | | '_ \    | |/ _ \/ __| __/ __|
+|  _ <| |_| | | | |   | |  __/\__ \ |_\__ \
+|_| \_\\__,_|_| |_|   |_|\___||___/\__|___/
+
+VAULT at ec2-100-24-27-30.compute-1.amazonaws.com
+VAULT_TOKEN is s.pobTR3ohime1FiH2fF5ncnwT
+WARNING! The VAULT_TOKEN environment variable is set! This takes precedence
+over the value set by this command. To use the value set by this command,
+unset the VAULT_TOKEN environment variable or set it to the token displayed
+below.
+
+Success! You are now authenticated. The token information displayed below
+is already stored in the token helper. You do NOT need to run "vault login"
+again. Future Vault requests will automatically use this token.
+
+Key                  Value
+---                  -----
+token                s.pobTR3ohime1FiH2fF5ncnwT
+token_accessor       GsNEBIMc8A6X0QbnYgeVD1Mq
+token_duration       ∞
+token_renewable      false
+token_policies       ["root"]
+identity_policies    []
+policies             ["root"]
+====== Metadata ======
+Key              Value
+---              -----
+created_time     2019-08-22T14:38:19.659083922Z
+deletion_time    n/a
+destroyed        false
+version          1
+
+=== Data ===
+Key    Value
+---    -----
+dns    ec2-54-88-93-242.compute-1.amazonaws.com
+====== Metadata ======
+Key              Value
+---              -----
+created_time     2019-08-22T14:38:19.720757756Z
+deletion_time    n/a
+destroyed        false
+version          1
+
+=== Data ===
+Key    Value
+---    -----
+dns    ec2-54-209-176-138.compute-1.amazonaws.com
+ORACLE at ec2-54-88-93-242.compute-1.amazonaws.com
+TOMCAT at ec2-54-209-176-138.compute-1.amazonaws.com
+Smoke test
+curl -s http://ec2-54-209-176-138.compute-1.amazonaws.com:8080/passwordAPI/passwordDB
+SMOKE TEST SUCCESS
+   _____                 __           ______          __     _____
+  / ___/____ ___  ____  / /_____     /_  __/__  _____/ /_   / ___/__  _______________  __________
+  \__ \/ __ `__ \/ __ \/ //_/ _ \     / / / _ \/ ___/ __/   \__ \/ / / / ___/ ___/ _ \/ ___/ ___/
+ ___/ / / / / / / /_/ / ,< /  __/    / / /  __(__  ) /_    ___/ / /_/ / /__/ /__/  __(__  |__  )
+/____/_/ /_/ /_/\____/_/|_|\___/    /_/  \___/____/\__/   /____/\__,_/\___/\___/\___/____/____/
+
+Key              Value
+---              -----
+created_time     2019-08-22T14:42:11.890711448Z
+deletion_time    n/a
+destroyed        false
+version          3
+Configuring test application to point to Tomcat endpoint
+Run integration tests
+Feature: UM Portal API - Password Rules
+  As a security officer,
+  I want to ensure that users choose passwords that are hard to reproduce,
+  So that passwords aren't easily compromised.
+
+  Scenario Outline: Conforms to password rules [90m# src/test/features/passwordRules.feature:7[0m
+    [36mGiven I want to change my password with the UM Portal[0m
+    [36mWhen I try to set my new password to "<password>"[0m
+    [36mThen I then I should be told "<passwordAdvice>"[0m
+
+    Examples:
+
+  Scenario Outline: Conforms to password rules                      [90m# src/test/features/passwordRules.feature:14[0m
+    [32mGiven [0m[32mI want to change my password with the UM Portal[0m           [90m# CucumberStepDefsWebservice.i_want_to_change_my_password_with_the_UM_Portal()[0m
+    [32mWhen [0m[32mI try to set my new password to "[0m[32m[1m12345[0m[32m"[0m                    [90m# CucumberStepDefsWebservice.i_try_to_set_my_new_password_to(String)[0m
+    [32mThen [0m[32mI then I should be told "[0m[32m[1mpassword must have letters in it[0m[32m"[0m [90m# CucumberStepDefsWebservice.i_then_I_should_be_told(String)[0m
+
+  Scenario Outline: Conforms to password rules                                                [90m# src/test/features/passwordRules.feature:15[0m
+    [32mGiven [0m[32mI want to change my password with the UM Portal[0m                                     [90m# CucumberStepDefsWebservice.i_want_to_change_my_password_with_the_UM_Portal()[0m
+    [32mWhen [0m[32mI try to set my new password to "[0m[32m[1mpassword[0m[32m"[0m                                           [90m# CucumberStepDefsWebservice.i_try_to_set_my_new_password_to(String)[0m
+    [32mThen [0m[32mI then I should be told "[0m[32m[1mpassword must have both upper and lower case letters in it[0m[32m"[0m [90m# CucumberStepDefsWebservice.i_then_I_should_be_told(String)[0m
+
+  Scenario Outline: Conforms to password rules                                                [90m# src/test/features/passwordRules.feature:16[0m
+    [32mGiven [0m[32mI want to change my password with the UM Portal[0m                                     [90m# CucumberStepDefsWebservice.i_want_to_change_my_password_with_the_UM_Portal()[0m
+    [32mWhen [0m[32mI try to set my new password to "[0m[32m[1mPASSWORD[0m[32m"[0m                                           [90m# CucumberStepDefsWebservice.i_try_to_set_my_new_password_to(String)[0m
+    [32mThen [0m[32mI then I should be told "[0m[32m[1mpassword must have both upper and lower case letters in it[0m[32m"[0m [90m# CucumberStepDefsWebservice.i_then_I_should_be_told(String)[0m
+
+  Scenario Outline: Conforms to password rules                                                [90m# src/test/features/passwordRules.feature:17[0m
+    [32mGiven [0m[32mI want to change my password with the UM Portal[0m                                     [90m# CucumberStepDefsWebservice.i_want_to_change_my_password_with_the_UM_Portal()[0m
+    [32mWhen [0m[32mI try to set my new password to "[0m[32m[1mpASSWORD1[0m[32m"[0m                                          [90m# CucumberStepDefsWebservice.i_try_to_set_my_new_password_to(String)[0m
+    [32mThen [0m[32mI then I should be told "[0m[32m[1mpassword must have at least 1 special case character in it[0m[32m"[0m [90m# CucumberStepDefsWebservice.i_then_I_should_be_told(String)[0m
+
+  Scenario Outline: Conforms to password rules                               [90m# src/test/features/passwordRules.feature:18[0m
+    [32mGiven [0m[32mI want to change my password with the UM Portal[0m                    [90m# CucumberStepDefsWebservice.i_want_to_change_my_password_with_the_UM_Portal()[0m
+    [32mWhen [0m[32mI try to set my new password to "[0m[32m[1mpASSWORD![0m[32m"[0m                         [90m# CucumberStepDefsWebservice.i_try_to_set_my_new_password_to(String)[0m
+    [32mThen [0m[32mI then I should be told "[0m[32m[1mpassword must have at least 1 digit in it[0m[32m"[0m [90m# CucumberStepDefsWebservice.i_then_I_should_be_told(String)[0m
+
+  Scenario Outline: Conforms to password rules                                 [90m# src/test/features/passwordRules.feature:19[0m
+    [32mGiven [0m[32mI want to change my password with the UM Portal[0m                      [90m# CucumberStepDefsWebservice.i_want_to_change_my_password_with_the_UM_Portal()[0m
+    [32mWhen [0m[32mI try to set my new password to "[0m[32m[1mpW1![0m[32m"[0m                                [90m# CucumberStepDefsWebservice.i_try_to_set_my_new_password_to(String)[0m
+    [32mThen [0m[32mI then I should be told "[0m[32m[1mpassword must be at least 8 characters long[0m[32m"[0m [90m# CucumberStepDefsWebservice.i_then_I_should_be_told(String)[0m
+
+  Scenario Outline: Conforms to password rules                            [90m# src/test/features/passwordRules.feature:20[0m
+    [32mGiven [0m[32mI want to change my password with the UM Portal[0m                 [90m# CucumberStepDefsWebservice.i_want_to_change_my_password_with_the_UM_Portal()[0m
+    [32mWhen [0m[32mI try to set my new password to "[0m[32m[1mpass Word1![0m[32m"[0m                    [90m# CucumberStepDefsWebservice.i_try_to_set_my_new_password_to(String)[0m
+    [32mThen [0m[32mI then I should be told "[0m[32m[1mpassword can not have any spaces in it[0m[32m"[0m [90m# CucumberStepDefsWebservice.i_then_I_should_be_told(String)[0m
+
+  Scenario Outline: Conforms to password rules                        [90m# src/test/features/passwordRules.feature:21[0m
+    [32mGiven [0m[32mI want to change my password with the UM Portal[0m             [90m# CucumberStepDefsWebservice.i_want_to_change_my_password_with_the_UM_Portal()[0m
+    [32mWhen [0m[32mI try to set my new password to "[0m[32m[1mbFihJv!srBChibW4ay#eXEksdh[0m[32m"[0m [90m# CucumberStepDefsWebservice.i_try_to_set_my_new_password_to(String)[0m
+    [32mThen [0m[32mI then I should be told "[0m[32m[1mpassword OK[0m[32m"[0m                        [90m# CucumberStepDefsWebservice.i_then_I_should_be_told(String)[0m
+
+Feature: UM Portal API - Password Strength
+  As a security officer,
+  I want to ensure that users choose passwords that are hard to reproduce,
+  So that passwords aren't easily compromised.
+
+  Password strength is calculated by the following formula
+  1. Take the length of the password and subtract 8
+  2. Add in all special special characters used in the password
+  3. Subtract all consecutive upper or lower or special character or digit sequences in the password
+
+  Scenario Outline: Password strength metric [90m# src/test/features/passwordStrength.feature:12[0m
+    [36mGiven I want to change my password with the UM Portal[0m
+    [36mWhen I try to set my new password to "<password>"[0m
+    [36mThen I then I should be told that it has a strength of "<passwordStrength>"[0m
+
+    Examples:
+
+  Scenario Outline: Password strength metric                    [90m# src/test/features/passwordStrength.feature:19[0m
+    [32mGiven [0m[32mI want to change my password with the UM Portal[0m       [90m# CucumberStepDefsWebservice.i_want_to_change_my_password_with_the_UM_Portal()[0m
+    [32mWhen [0m[32mI try to set my new password to "[0m[32m[1mpassWord1![0m[32m"[0m           [90m# CucumberStepDefsWebservice.i_try_to_set_my_new_password_to(String)[0m
+    [32mThen [0m[32mI then I should be told that it has a strength of "[0m[32m[1m-1[0m[32m"[0m [90m# CucumberStepDefsWebservice.i_then_I_should_be_told_that_it_has_a_strength_of(String)[0m
+
+  Scenario Outline: Password strength metric                          [90m# src/test/features/passwordStrength.feature:20[0m
+    [32mGiven [0m[32mI want to change my password with the UM Portal[0m             [90m# CucumberStepDefsWebservice.i_want_to_change_my_password_with_the_UM_Portal()[0m
+    [32mWhen [0m[32mI try to set my new password to "[0m[32m[1mbFihJv!srBChibW4ay*eXEksdh[0m[32m"[0m [90m# CucumberStepDefsWebservice.i_try_to_set_my_new_password_to(String)[0m
+    [32mThen [0m[32mI then I should be told that it has a strength of "[0m[32m[1m11[0m[32m"[0m       [90m# CucumberStepDefsWebservice.i_then_I_should_be_told_that_it_has_a_strength_of(String)[0m
+
+10 Scenarios ([32m10 passed[0m)
+30 Steps ([32m30 passed[0m)
+0m0.499s
+
+Starting net.masterthought.cucumber Report
+ERROR StatusLogger No log4j2 configuration file found. Using default configuration: logging only errors to the console. Set system property 'org.apache.logging.log4j.simplelog.StatusLogger.level' to TRACE to show Log4j2 internal initialization logging.
+Finished net.masterthought.cucumber Report
+Key              Value
+---              -----
+created_time     2019-08-22T14:42:26.365678169Z
+deletion_time    n/a
+destroyed        false
+version          4
+[TESTJOB] $ /bin/sh -xe /tmp/jenkins1454938688052110475.sh
++ /bin/bash ./remote-testjob/step_4_teardown.sh
+ _____                  _                       _____                      _   _     _
+|_   _|__  __ _ _ __ __| | _____      ___ __   | ____|_   _____ _ __ _   _| |_| |__ (_)_ __   __ _
+  | |/ _ \/ _` | '__/ _` |/ _ \ \ /\ / / '_ \  |  _| \ \ / / _ \ '__| | | | __| '_ \| | '_ \ / _` |
+  | |  __/ (_| | | | (_| | (_) \ V  V /| | | | | |___ \ V /  __/ |  | |_| | |_| | | | | | | | (_| |
+  |_|\___|\__,_|_|  \__,_|\___/ \_/\_/ |_| |_| |_____| \_/ \___|_|   \__, |\__|_| |_|_|_| |_|\__, |
+                                                                     |___/                   |___/
+[0m[1maws_security_group.tomcat: Refreshing state... [id=sg-03da0a639257816f1][0m
+[0m[1maws_key_pair.oracle_tomcat_key_pair: Refreshing state... [id=oracle_tomcat_key_pair][0m
+[0m[1maws_security_group.oracle: Refreshing state... [id=sg-0ba561d86d02a5cdd][0m
+[0m[1maws_instance.ec2_oracle[0]: Refreshing state... [id=i-0fe21ef2bda2c889e][0m
+[0m[1maws_instance.ec2_tomcat[0]: Refreshing state... [id=i-052453b62b137dd5a][0m
+[0m[1maws_instance.ec2_tomcat[0]: Destroying... [id=i-052453b62b137dd5a][0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Destroying... [id=i-0fe21ef2bda2c889e][0m[0m
+[0m[1maws_instance.ec2_tomcat[0]: Still destroying... [id=i-052453b62b137dd5a, 10s elapsed][0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Still destroying... [id=i-0fe21ef2bda2c889e, 10s elapsed][0m[0m
+[0m[1maws_instance.ec2_tomcat[0]: Still destroying... [id=i-052453b62b137dd5a, 20s elapsed][0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Still destroying... [id=i-0fe21ef2bda2c889e, 20s elapsed][0m[0m
+[0m[1maws_instance.ec2_tomcat[0]: Destruction complete after 29s[0m[0m
+[0m[1maws_security_group.tomcat: Destroying... [id=sg-03da0a639257816f1][0m[0m
+[0m[1maws_security_group.tomcat: Destruction complete after 1s[0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Still destroying... [id=i-0fe21ef2bda2c889e, 30s elapsed][0m[0m
+[0m[1maws_instance.ec2_oracle[0]: Destruction complete after 39s[0m[0m
+[0m[1maws_security_group.oracle: Destroying... [id=sg-0ba561d86d02a5cdd][0m[0m
+[0m[1maws_key_pair.oracle_tomcat_key_pair: Destroying... [id=oracle_tomcat_key_pair][0m[0m
+[0m[1maws_key_pair.oracle_tomcat_key_pair: Destruction complete after 0s[0m[0m
+[0m[1maws_security_group.oracle: Destruction complete after 1s[0m[0m
+[0m[1m[32m
+Destroy complete! Resources: 5 destroyed.[0m
+Finished: SUCCESS

@@ -1,0 +1,1050 @@
+howarddeiner@ubuntu:~/IdeaProjects/sample-iac-vault-jenkins-on-demand-runbatch-test-environments$ ./step_1_terraform_vault.sh
+ _____                    __                       __     __          _ _
+|_   _|__ _ __ _ __ __ _ / _| ___  _ __ _ __ ___   \ \   / /_ _ _   _| | |_
+  | |/ _ \ '__| '__/ _` | |_ / _ \| '__| '_ ` _ \   \ \ / / _` | | | | | __|
+  | |  __/ |  | | | (_| |  _| (_) | |  | | | | | |   \ V / (_| | |_| | | |_
+  |_|\___|_|  |_|  \__,_|_|  \___/|_|  |_| |_| |_|    \_/ \__,_|\__,_|_|\__|
+
+
+Initializing the backend...
+
+Initializing provider plugins...
+
+The following providers do not have any version constraints in configuration,
+so the latest version was installed.
+
+To prevent automatic upgrades to new major versions that may contain breaking
+changes, it is recommended to add version = "..." constraints to the
+corresponding provider blocks in configuration, with the constraint strings
+suggested below.
+
+* provider.aws: version = "~> 2.24"
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+aws_key_pair.vault_key_pair: Refreshing state... [id=vault_key_pair]
+aws_security_group.vault: Refreshing state... [id=sg-01b189495dff08cf2]
+aws_instance.ec2_vault[0]: Refreshing state... [id=i-04ebfd0c43b355f44]
+aws_key_pair.vault_key_pair: Creating...
+aws_security_group.vault: Creating...
+aws_key_pair.vault_key_pair: Creation complete after 1s [id=vault_key_pair]
+aws_security_group.vault: Creation complete after 4s [id=sg-092005e0ec807c230]
+aws_instance.ec2_vault[0]: Creating...
+aws_instance.ec2_vault[0]: Still creating... [10s elapsed]
+aws_instance.ec2_vault[0]: Still creating... [20s elapsed]
+aws_instance.ec2_vault[0]: Still creating... [30s elapsed]
+aws_instance.ec2_vault[0]: Creation complete after 36s [id=i-02f6c6cf0386af469]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+vault_dns = [
+  [
+    "ec2-100-24-27-30.compute-1.amazonaws.com",
+  ],
+]
+vault_ip = [
+  [
+    "100.24.27.30",
+  ],
+]
+
+
+
+howarddeiner@ubuntu:~/IdeaProjects/sample-iac-vault-jenkins-on-demand-runbatch-test-environments$ ./step_2_provision_vault.sh
+ ____                 _     _              __     __          _ _
+|  _ \ _ __ _____   _(_)___(_) ___  _ __   \ \   / /_ _ _   _| | |_
+| |_) | '__/ _ \ \ / / / __| |/ _ \| '_ \   \ \ / / _` | | | | | __|
+|  __/| | | (_) \ V /| \__ \ | (_) | | | |   \ V / (_| | |_| | | |_
+|_|   |_|  \___/ \_/ |_|___/_|\___/|_| |_|    \_/ \__,_|\__,_|_|\__|
+
+VAULT at ec2-100-24-27-30.compute-1.amazonaws.com
+   __  __      __                __                   __
+  / / / /___  / /___  ____ _____/ /  ____ _____  ____/ /  _______  ______
+ / / / / __ \/ / __ \/ __ `/ __  /  / __ `/ __ \/ __  /  / ___/ / / / __ \
+/ /_/ / /_/ / / /_/ / /_/ / /_/ /  / /_/ / / / / /_/ /  / /  / /_/ / / / /
+\____/ .___/_/\____/\__,_/\__,_/   \__,_/_/ /_/\__,_/  /_/   \__,_/_/ /_/
+    /_/
+                    ____    _       _ __         __
+ _   ______ ___  __/ / /_  (_)___  (_) /_  _____/ /_
+| | / / __ `/ / / / / __/ / / __ \/ / __/ / ___/ __ \
+| |/ / /_/ / /_/ / / /__ / / / / / / /__ (__  ) / / /
+|___/\__,_/\__,_/_/\__(_)_/_/ /_/_/\__(_)____/_/ /_/
+
+remote execution: mkdir /home/ubuntu/vault
+Started on ec2-100-24-27-30.compute-1.amazonaws.com...
+Finished on ec2-100-24-27-30.compute-1.amazonaws.com:
+Successful on 1 node: ec2-100-24-27-30.compute-1.amazonaws.com
+Ran on 1 node in 0.83 seconds
+remote execution: mkdir /home/ubuntu/vault/config
+Started on ec2-100-24-27-30.compute-1.amazonaws.com...
+Finished on ec2-100-24-27-30.compute-1.amazonaws.com:
+Successful on 1 node: ec2-100-24-27-30.compute-1.amazonaws.com
+Ran on 1 node in 0.82 seconds
+upload: vault.init.sh to /home/ubuntu/vault.init.sh
+Started on ec2-100-24-27-30.compute-1.amazonaws.com...
+Finished on ec2-100-24-27-30.compute-1.amazonaws.com:
+  Uploaded 'vault.init.sh' to 'ec2-100-24-27-30.compute-1.amazonaws.com:/home/ubuntu/vault.init.sh'
+Successful on 1 node: ec2-100-24-27-30.compute-1.amazonaws.com
+Ran on 1 node in 1.51 seconds
+remote execution: chmod +x /home/ubuntu/vault.init.sh
+Started on ec2-100-24-27-30.compute-1.amazonaws.com...
+Finished on ec2-100-24-27-30.compute-1.amazonaws.com:
+Successful on 1 node: ec2-100-24-27-30.compute-1.amazonaws.com
+Ran on 1 node in 0.84 seconds
+upload: vault.local.json to /home/ubuntu/vault/config/vault.local.json
+Started on ec2-100-24-27-30.compute-1.amazonaws.com...
+Finished on ec2-100-24-27-30.compute-1.amazonaws.com:
+  Uploaded 'vault.local.json' to 'ec2-100-24-27-30.compute-1.amazonaws.com:/home/ubuntu/vault/config/vault.local.json'
+Successful on 1 node: ec2-100-24-27-30.compute-1.amazonaws.com
+Ran on 1 node in 1.62 seconds
+upload: vault.initialization.out.parse.sh to /home/ubuntu/vault.initialization.out.parse.sh
+Started on ec2-100-24-27-30.compute-1.amazonaws.com...
+Finished on ec2-100-24-27-30.compute-1.amazonaws.com:
+  Uploaded 'vault.initialization.out.parse.sh' to 'ec2-100-24-27-30.compute-1.amazonaws.com:/home/ubuntu/vault.initialization.out.parse.sh'
+Successful on 1 node: ec2-100-24-27-30.compute-1.amazonaws.com
+Ran on 1 node in 1.66 seconds
+remote execution: chmod +x /home/ubuntu/vault.initialization.out.parse.sh
+Started on ec2-100-24-27-30.compute-1.amazonaws.com...
+Finished on ec2-100-24-27-30.compute-1.amazonaws.com:
+Successful on 1 node: ec2-100-24-27-30.compute-1.amazonaws.com
+Ran on 1 node in 0.79 seconds
+   __  __      __                __                   __
+  / / / /___  / /___  ____ _____/ /  ____ _____  ____/ /  _______  ______
+ / / / / __ \/ / __ \/ __ `/ __  /  / __ `/ __ \/ __  /  / ___/ / / / __ \
+/ /_/ / /_/ / / /_/ / /_/ / /_/ /  / /_/ / / / / /_/ /  / /  / /_/ / / / /
+\____/ .___/_/\____/\__,_/\__,_/   \__,_/_/ /_/\__,_/  /_/   \__,_/_/ /_/
+    /_/
+                           _      _                                  ____         __
+    ____  _________ _   __(_)____(_)___  ____     _   ______ ___  __/ / /_  _____/ /_
+   / __ \/ ___/ __ \ | / / / ___/ / __ \/ __ \   | | / / __ `/ / / / / __/ / ___/ __ \
+  / /_/ / /  / /_/ / |/ / (__  ) / /_/ / / / /   | |/ / /_/ / /_/ / / /__ (__  ) / / /
+ / .___/_/   \____/|___/_/____/_/\____/_/ /_/____|___/\__,_/\__,_/_/\__(_)____/_/ /_/
+/_/                                        /_____/
+upload: provision_vault.sh to /home/ubuntu/provision_vault.sh
+Started on ec2-100-24-27-30.compute-1.amazonaws.com...
+Finished on ec2-100-24-27-30.compute-1.amazonaws.com:
+  Uploaded 'provision_vault.sh' to 'ec2-100-24-27-30.compute-1.amazonaws.com:/home/ubuntu/provision_vault.sh'
+Successful on 1 node: ec2-100-24-27-30.compute-1.amazonaws.com
+Ran on 1 node in 1.59 seconds
+remote execution: chmod +x /home/ubuntu/provision_vault.sh
+Started on ec2-100-24-27-30.compute-1.amazonaws.com...
+Finished on ec2-100-24-27-30.compute-1.amazonaws.com:
+Successful on 1 node: ec2-100-24-27-30.compute-1.amazonaws.com
+Ran on 1 node in 0.79 seconds
+remote exeution: /home/ubuntu/provision_vault.sh
+Started on ec2-100-24-27-30.compute-1.amazonaws.com...
+Finished on ec2-100-24-27-30.compute-1.amazonaws.com:
+  STDOUT:
+    OK
+    Selecting previously unselected package pigz.
+(Reading database ... 51263 files and directories currently installed.)
+    Preparing to unpack .../pigz_2.3.1-2_amd64.deb ...
+    Unpacking pigz (2.3.1-2) ...
+    Selecting previously unselected package aufs-tools.
+    Preparing to unpack .../aufs-tools_1%3a3.2+20130722-1.1ubuntu1_amd64.deb ...
+    Unpacking aufs-tools (1:3.2+20130722-1.1ubuntu1) ...
+    Selecting previously unselected package cgroupfs-mount.
+    Preparing to unpack .../cgroupfs-mount_1.2_all.deb ...
+    Unpacking cgroupfs-mount (1.2) ...
+    Selecting previously unselected package containerd.io.
+    Preparing to unpack .../containerd.io_1.2.6-3_amd64.deb ...
+    Unpacking containerd.io (1.2.6-3) ...
+    Selecting previously unselected package docker-ce-cli.
+    Preparing to unpack .../docker-ce-cli_5%3a19.03.1~3-0~ubuntu-xenial_amd64.deb ...
+    Unpacking docker-ce-cli (5:19.03.1~3-0~ubuntu-xenial) ...
+    Selecting previously unselected package docker-ce.
+    Preparing to unpack .../docker-ce_5%3a19.03.1~3-0~ubuntu-xenial_amd64.deb ...
+    Unpacking docker-ce (5:19.03.1~3-0~ubuntu-xenial) ...
+    Selecting previously unselected package libltdl7:amd64.
+    Preparing to unpack .../libltdl7_2.4.6-0.1_amd64.deb ...
+    Unpacking libltdl7:amd64 (2.4.6-0.1) ...
+    Processing triggers for man-db (2.7.5-1) ...
+    Processing triggers for libc-bin (2.23-0ubuntu10) ...
+    Processing triggers for ureadahead (0.100.0-19) ...
+    Processing triggers for systemd (229-4ubuntu21.2) ...
+    Setting up pigz (2.3.1-2) ...
+    Setting up aufs-tools (1:3.2+20130722-1.1ubuntu1) ...
+    Setting up cgroupfs-mount (1.2) ...
+    Setting up containerd.io (1.2.6-3) ...
+    Setting up docker-ce-cli (5:19.03.1~3-0~ubuntu-xenial) ...
+    Setting up docker-ce (5:19.03.1~3-0~ubuntu-xenial) ...
+    Setting up libltdl7:amd64 (2.4.6-0.1) ...
+    Processing triggers for libc-bin (2.23-0ubuntu10) ...
+    Processing triggers for systemd (229-4ubuntu21.2) ...
+    Processing triggers for ureadahead (0.100.0-19) ...
+    Start the vault server
+    e613acbc42894bfd76a1423624a2febaeedf3f266d530c4d6761c848d4ecc1b0
+    3f8b8a66ca1ee9dcd34d0ee5a937b6e17e118c41f47266339e950e8ed93e7e21
+    Waiting for Vault to start
+    Vault has started
+    Key                Value
+    ---                -----
+    Seal Type          shamir
+    Initialized        true
+    Sealed             true
+    Total Shares       5
+    Threshold          3
+    Unseal Progress    1/3
+    Unseal Nonce       9b6ba04e-e249-a7de-455f-11b6e040658a
+    Version            1.2.2
+    HA Enabled         false
+    Key                Value
+    ---                -----
+    Seal Type          shamir
+    Initialized        true
+    Sealed             true
+    Total Shares       5
+    Threshold          3
+    Unseal Progress    2/3
+    Unseal Nonce       9b6ba04e-e249-a7de-455f-11b6e040658a
+    Version            1.2.2
+    HA Enabled         false
+    Key             Value
+    ---             -----
+    Seal Type       shamir
+    Initialized     true
+    Sealed          false
+    Total Shares    5
+    Threshold       3
+    Version         1.2.2
+    Cluster Name    vault-cluster-55dfe325
+    Cluster ID      6fa280f2-82ed-a903-1bbc-b697359a377f
+    HA Enabled      false
+    Success! You are now authenticated. The token information displayed below
+    is already stored in the token helper. You do NOT need to run "vault login"
+    again. Future Vault requests will automatically use this token.
+
+    Key                  Value
+    ---                  -----
+    token                s.pobTR3ohime1FiH2fF5ncnwT
+    token_accessor       GsNEBIMc8A6X0QbnYgeVD1Mq
+    token_duration       ∞
+    token_renewable      false
+    token_policies       ["root"]
+    identity_policies    []
+    policies             ["root"]
+  STDERR:
+    debconf: unable to initialize frontend: Dialog
+    debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+    debconf: falling back to frontend: Readline
+    debconf: unable to initialize frontend: Readline
+    debconf: (This frontend requires a controlling tty.)
+    debconf: falling back to frontend: Teletype
+    dpkg-preconfigure: unable to re-open stdin:
+    Unable to find image 'vault:latest' locally
+    latest: Pulling from library/vault
+    9d48c3bd43c5: Pulling fs layer
+    ab078c92c131: Pulling fs layer
+    d56325e77640: Pulling fs layer
+    b8e01883e6ee: Pulling fs layer
+    2ca4402a250e: Pulling fs layer
+    b8e01883e6ee: Waiting
+    2ca4402a250e: Waiting
+    ab078c92c131: Verifying Checksum
+    ab078c92c131: Download complete
+    b8e01883e6ee: Verifying Checksum
+    b8e01883e6ee: Download complete
+    9d48c3bd43c5: Verifying Checksum
+    9d48c3bd43c5: Download complete
+    2ca4402a250e: Verifying Checksum
+    2ca4402a250e: Download complete
+    9d48c3bd43c5: Pull complete
+    ab078c92c131: Pull complete
+    d56325e77640: Verifying Checksum
+    d56325e77640: Download complete
+    d56325e77640: Pull complete
+    b8e01883e6ee: Pull complete
+    2ca4402a250e: Pull complete
+    Digest: sha256:3c23182fb7e4e8f5fb19dc153b501acaffb5e908bb6c9ad192e37ab3ca2ed2b4
+    Status: Downloaded newer image for vault:latest
+Successful on 1 node: ec2-100-24-27-30.compute-1.amazonaws.com
+Ran on 1 node in 40.72 seconds
+
+
+
+
+howarddeiner@ubuntu:~/IdeaProjects/sample-iac-vault-jenkins-on-demand-runbatch-test-environments$ ./step_3_create_docker_jenkins_image.sh
+ ____        _ _     _                   _   ____            _           _            _    _             ____             _
+| __ ) _   _(_) | __| |   __ _ _ __   __| | |  _ \ _   _ ___| |__       | | ___ _ __ | | _(_)_ __  ___  |  _ \  ___   ___| | _____ _ __
+|  _ \| | | | | |/ _` |  / _` | '_ \ / _` | | |_) | | | / __| '_ \   _  | |/ _ \ '_ \| |/ / | '_ \/ __| | | | |/ _ \ / __| |/ / _ \ '__|
+| |_) | |_| | | | (_| | | (_| | | | | (_| | |  __/| |_| \__ \ | | | | |_| |  __/ | | |   <| | | | \__ \ | |_| | (_) | (__|   <  __/ |
+|____/ \__,_|_|_|\__,_|  \__,_|_| |_|\__,_| |_|    \__,_|___/_| |_|  \___/ \___|_| |_|_|\_\_|_| |_|___/ |____/ \___/ \___|_|\_\___|_|
+
+ ___
+|_ _|_ __ ___   __ _  __ _  ___
+ | || '_ ` _ \ / _` |/ _` |/ _ \
+ | || | | | | | (_| | (_| |  __/
+|___|_| |_| |_|\__,_|\__, |\___|
+                     |___/
+    ____             __                __  __                      __                   _
+   / __ \____  _____/ /_____  _____   / / / /___  __  __________  / /_____  ___  ____  (_)___  ____ _
+  / / / / __ \/ ___/ //_/ _ \/ ___/  / /_/ / __ \/ / / / ___/ _ \/ //_/ _ \/ _ \/ __ \/ / __ \/ __ `/
+ / /_/ / /_/ / /__/ ,< /  __/ /     / __  / /_/ / /_/ (__  )  __/ ,< /  __/  __/ /_/ / / / / / /_/ /
+/_____/\____/\___/_/|_|\___/_/     /_/ /_/\____/\__,_/____/\___/_/|_|\___/\___/ .___/_/_/ /_/\__, /
+                                                                             /_/            /____/
+Error response from daemon: No such container: jenkins
+Error: No such container: jenkins
+Error: No such volume: jenkins_home
+Untagged: howarddeiner/jenkins:latest
+Untagged: howarddeiner/jenkins@sha256:2a7cd4fa3c09f0d4396ba67918cb1ab7892eb2bc582db7f13e735316fe6dba68
+Deleted: sha256:295411b949d9eac8d02e816696f5f073ad6a7ce7f4963b5f17b8b37b92785434
+Deleted: sha256:ff9ff4f9e01c1661bef949404a8e34e1efa497a2e97b51571a68e8c8a6fb069d
+Deleted: sha256:014dca01a03224b55d8e7922c6a6e4ce4f78c1ce048302963da5f3b36fe0b827
+Deleted: sha256:a684375cc904804b56a4c90d49d2becd6ba8a85bdd535c7c1b8fda18cbe8e464
+Deleted: sha256:d18ef3a0322cf7bbab6354fd4b5026d68b531028628fba4fd8feced5d2529393
+Deleted: sha256:e8d2819c92e22d3271c275245a9fc300a3d411ceeb8201c0bfb6fad9adb545c3
+Deleted: sha256:4c0305bdc31829ba617985649330fee1559e685037e54343d42673ac0155e74e
+Deleted: sha256:329626693064c12bd5a3e1a6199b90abee8fa8c4bb1ad6a58daff9ddf811c3be
+Deleted: sha256:e7259fa2dcdc9240b36cbb4e353472dacdca2a2abf4173dc765fb6cbfc81d93d
+Deleted: sha256:23b48aa5e9a29d81f36f1bf023c2d3d52a9b93ac5f21bcb70cb853fa5f29dc79
+Deleted: sha256:6defdb457ebd81537b5632d0238ffdb8a291cf661f7e3318be0b5c3b23b645db
+    ____        _ __    __       __           __   _               ____
+   / __ )__  __(_) /___/ /      / /__  ____  / /__(_)___  _____   /  _/___ ___  ____ _____ ____
+  / __  / / / / / / __  /  __  / / _ \/ __ \/ //_/ / __ \/ ___/   / // __ `__ \/ __ `/ __ `/ _ \
+ / /_/ / /_/ / / / /_/ /  / /_/ /  __/ / / / ,< / / / / (__  )  _/ // / / / / / /_/ / /_/ /  __/
+/_____/\__,_/_/_/\__,_/   \____/\___/_/ /_/_/|_/_/_/ /_/____/  /___/_/ /_/ /_/\__,_/\__, /\___/
+                                                                                   /____/
+Sending build context to Docker daemon  5.632kB
+Step 1/25 : FROM jenkins/jenkins:latest
+ ---> 89b52a590f41
+Step 2/25 : RUN /usr/local/bin/install-plugins.sh git
+ ---> Using cache
+ ---> ea76c955279e
+Step 3/25 : ENV JENKINS_USER admin
+ ---> Using cache
+ ---> 3ac13edfcbea
+Step 4/25 : ENV JENKINS_PASS admin
+ ---> Using cache
+ ---> 43e39e2dfce5
+Step 5/25 : ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+ ---> Using cache
+ ---> ae6f9dc9949c
+Step 6/25 : COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/
+ ---> Using cache
+ ---> 20afcf10608f
+Step 7/25 : COPY default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
+ ---> Using cache
+ ---> 02a168f7ba73
+Step 8/25 : VOLUME /var/jenkins_home
+ ---> Using cache
+ ---> 9eec0c1cdb71
+Step 9/25 : USER root
+ ---> Using cache
+ ---> ecfe75684062
+Step 10/25 : RUN apt-get update && apt-get install -y maven && apt-get install -y figlet
+ ---> Using cache
+ ---> 6526badcc402
+Step 11/25 : RUN wget https://releases.hashicorp.com/terraform/0.12.6/terraform_0.12.6_linux_amd64.zip
+ ---> Using cache
+ ---> 6a2f06b798fa
+Step 12/25 : RUN unzip terraform_0.12.6_linux_amd64.zip
+ ---> Using cache
+ ---> 3de9e1bdfedd
+Step 13/25 : RUN mv terraform /usr/local/bin/
+ ---> Using cache
+ ---> c166c437047c
+Step 14/25 : RUN wget https://releases.hashicorp.com/vault/1.2.2/vault_1.2.2_linux_amd64.zip
+ ---> Using cache
+ ---> 239c0974e3e1
+Step 15/25 : RUN unzip vault_1.2.2_linux_amd64.zip
+ ---> Using cache
+ ---> 668341d62b66
+Step 16/25 : RUN mv vault /usr/local/bin/
+ ---> Using cache
+ ---> 2dfba3d3f0be
+Step 17/25 : RUN wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.7.0/liquibase-3.7.0-bin.tar.gz
+ ---> Using cache
+ ---> 5ce9b4408eb4
+Step 18/25 : RUN tar zxvf liquibase-3.7.0-bin.tar.gz
+ ---> Using cache
+ ---> 06e91883d8a1
+Step 19/25 : RUN chmod +x ./liquibase
+ ---> Using cache
+ ---> 38df0826a02a
+Step 20/25 : RUN ln -s /liquibase /usr/local/bin/liquibase
+ ---> Running in b57449d52f3d
+Removing intermediate container b57449d52f3d
+ ---> b4deea325f9b
+Step 21/25 : RUN wget https://apt.puppet.com/puppet-tools-release-xenial.deb
+ ---> Running in a8df56196241
+--2019-08-22 14:31:07--  https://apt.puppet.com/puppet-tools-release-xenial.deb
+Resolving apt.puppet.com (apt.puppet.com)... 99.84.127.60, 99.84.127.83, 99.84.127.22, ...
+Connecting to apt.puppet.com (apt.puppet.com)|99.84.127.60|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 11708 (11K) [application/x-debian-package]
+Saving to: ‘puppet-tools-release-xenial.deb’
+
+     0K .......... .                                          100%  223M=0s
+
+2019-08-22 14:31:08 (223 MB/s) - ‘puppet-tools-release-xenial.deb’ saved [11708/11708]
+
+Removing intermediate container a8df56196241
+ ---> 97ff8e7a05f2
+Step 22/25 : RUN dpkg -i puppet-tools-release-xenial.deb
+ ---> Running in 6be14b20501a
+Selecting previously unselected package puppet-tools-release.
+(Reading database ... 16179 files and directories currently installed.)
+Preparing to unpack puppet-tools-release-xenial.deb ...
+Unpacking puppet-tools-release (1.0.0-1xenial) ...
+Setting up puppet-tools-release (1.0.0-1xenial) ...
+Removing intermediate container 6be14b20501a
+ ---> e380b10351aa
+Step 23/25 : RUN apt-get update
+ ---> Running in ef3ff1909899
+Get:1 http://security.debian.org/debian-security stretch/updates InRelease [94.3 kB]
+Ign:2 http://deb.debian.org/debian stretch InRelease
+Get:3 http://deb.debian.org/debian stretch-updates InRelease [91.0 kB]
+Get:4 http://apt.puppet.com xenial InRelease [101 kB]
+Hit:5 http://deb.debian.org/debian stretch Release
+Get:6 http://security.debian.org/debian-security stretch/updates/main amd64 Packages [502 kB]
+Get:8 http://apt.puppet.com xenial/puppet-tools amd64 Packages [5691 B]
+Get:9 http://apt.puppet.com xenial/puppet-tools all Packages [1601 B]
+Fetched 796 kB in 1s (485 kB/s)
+Reading package lists...
+Removing intermediate container ef3ff1909899
+ ---> 93466bae4be5
+Step 24/25 : RUN apt-get install -y puppet-bolt
+ ---> Running in a8829d87a210
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following NEW packages will be installed:
+  puppet-bolt
+0 upgraded, 1 newly installed, 0 to remove and 1 not upgraded.
+Need to get 26.8 MB of archives.
+After this operation, 128 MB of additional disk space will be used.
+Get:1 http://apt.puppet.com xenial/puppet-tools amd64 puppet-bolt amd64 1.29.0-1xenial [26.8 MB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 26.8 MB in 19s (1390 kB/s)
+Selecting previously unselected package puppet-bolt.
+(Reading database ... 16184 files and directories currently installed.)
+Preparing to unpack .../puppet-bolt_1.29.0-1xenial_amd64.deb ...
+Unpacking puppet-bolt (1.29.0-1xenial) ...
+Processing triggers for libc-bin (2.24-11+deb9u4) ...
+Setting up puppet-bolt (1.29.0-1xenial) ...
+Processing triggers for libc-bin (2.24-11+deb9u4) ...
+Removing intermediate container a8829d87a210
+ ---> 400cb0148fbd
+Step 25/25 : USER jenkins
+ ---> Running in efed39c24106
+Removing intermediate container efed39c24106
+ ---> 01596ee5ab38
+Successfully built 01596ee5ab38
+Successfully tagged howarddeiner/jenkins:latest
+    ____             __           __           __   _               ____
+   / __ \__  _______/ /_         / /__  ____  / /__(_)___  _____   /  _/___ ___  ____ _____ ____
+  / /_/ / / / / ___/ __ \   __  / / _ \/ __ \/ //_/ / __ \/ ___/   / // __ `__ \/ __ `/ __ `/ _ \
+ / ____/ /_/ (__  ) / / /  / /_/ /  __/ / / / ,< / / / / (__  )  _/ // / / / / / /_/ / /_/ /  __/
+/_/    \__,_/____/_/ /_/   \____/\___/_/ /_/_/|_/_/_/ /_/____/  /___/_/ /_/ /_/\__,_/\__, /\___/
+                                                                                    /____/
+Authenticating with existing credentials...
+WARNING! Your password will be stored unencrypted in /home/howarddeiner/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+The push refers to repository [docker.io/howarddeiner/jenkins]
+8c85fabb6d09: Pushed
+f8e044f944f8: Pushed
+2f1d51d8997e: Pushed
+338cb76204f2: Layer already exists
+d0e3e55c460d: Pushed
+43a5b2103831: Layer already exists
+d9a54eae4ccb: Layer already exists
+7407febe6575: Layer already exists
+512098e474db: Layer already exists
+ae15ce45d7ba: Layer already exists
+d0aec5493e39: Layer already exists
+a835613d9d61: Layer already exists
+0144cf7bc81c: Layer already exists
+844a64d5fb1f: Layer already exists
+bbc6ae5ba9ce: Layer already exists
+ef762d28ecaa: Layer already exists
+65cca32c4d7e: Layer already exists
+0165de8b2e84: Layer already exists
+68ddf031691f: Layer already exists
+36bf3eebca32: Layer already exists
+949a605d956e: Layer already exists
+ec68d8b0c15d: Layer already exists
+4e240eb0e66d: Layer already exists
+bdbdb73dfea4: Layer already exists
+89281c4398f6: Layer already exists
+55f0ba7ab82f: Layer already exists
+3b42ab75c6ff: Layer already exists
+b29be006610f: Layer already exists
+a256f678ca60: Layer already exists
+d40e511dbcb0: Layer already exists
+b575bb71cbb6: Layer already exists
+7955da51da82: Layer already exists
+c64652873162: Layer already exists
+a4e797bc3f15: Layer already exists
+392f356944ff: Layer already exists
+15210a41d4ee: Layer already exists
+e2a8a00a83b2: Layer already exists
+latest: digest: sha256:415858b7b41230585a2b9df9df3747cd3da4762f75f262a5da9bdecc2722f572 size: 8085
+
+
+
+
+howarddeiner@ubuntu:~/IdeaProjects/sample-iac-vault-jenkins-on-demand-runbatch-test-environments$ ./step_4_terraform_jenkins.sh
+ _____                    __                            _            _    _
+|_   _|__ _ __ _ __ __ _ / _| ___  _ __ _ __ ___       | | ___ _ __ | | _(_)_ __  ___
+  | |/ _ \ '__| '__/ _` | |_ / _ \| '__| '_ ` _ \   _  | |/ _ \ '_ \| |/ / | '_ \/ __|
+  | |  __/ |  | | | (_| |  _| (_) | |  | | | | | | | |_| |  __/ | | |   <| | | | \__ \
+  |_|\___|_|  |_|  \__,_|_|  \___/|_|  |_| |_| |_|  \___/ \___|_| |_|_|\_\_|_| |_|___/
+
+
+Initializing the backend...
+
+Initializing provider plugins...
+
+The following providers do not have any version constraints in configuration,
+so the latest version was installed.
+
+To prevent automatic upgrades to new major versions that may contain breaking
+changes, it is recommended to add version = "..." constraints to the
+corresponding provider blocks in configuration, with the constraint strings
+suggested below.
+
+* provider.aws: version = "~> 2.24"
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+aws_key_pair.jenkins_key_pair: Refreshing state... [id=jenkins_key_pair]
+aws_security_group.jenkins: Refreshing state... [id=sg-0eed63a9161a12424]
+aws_instance.ec2_jenkins[0]: Refreshing state... [id=i-0d96081ff146bb544]
+aws_key_pair.jenkins_key_pair: Creating...
+aws_security_group.jenkins: Creating...
+aws_key_pair.jenkins_key_pair: Creation complete after 1s [id=jenkins_key_pair]
+aws_security_group.jenkins: Creation complete after 4s [id=sg-09dc371e4dd248bd3]
+aws_instance.ec2_jenkins[0]: Creating...
+aws_instance.ec2_jenkins[0]: Still creating... [10s elapsed]
+aws_instance.ec2_jenkins[0]: Still creating... [20s elapsed]
+aws_instance.ec2_jenkins[0]: Still creating... [30s elapsed]
+aws_instance.ec2_jenkins[0]: Creation complete after 36s [id=i-0f13ba411e43dd16f]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+jenkins_dns = [
+  [
+    "ec2-3-90-231-173.compute-1.amazonaws.com",
+  ],
+]
+jenkins_ip = [
+  [
+    "3.90.231.173",
+  ],
+]
+VAULT at ec2-100-24-27-30.compute-1.amazonaws.com
+VAULT_TOKEN is s.pobTR3ohime1FiH2fF5ncnwT
+JENKINS at JENKINS
+WARNING! The VAULT_TOKEN environment variable is set! This takes precedence
+over the value set by this command. To use the value set by this command,
+unset the VAULT_TOKEN environment variable or set it to the token displayed
+below.
+
+Success! You are now authenticated. The token information displayed below
+is already stored in the token helper. You do NOT need to run "vault login"
+again. Future Vault requests will automatically use this token.
+
+Key                  Value
+---                  -----
+token                s.pobTR3ohime1FiH2fF5ncnwT
+token_accessor       GsNEBIMc8A6X0QbnYgeVD1Mq
+token_duration       ∞
+token_renewable      false
+token_policies       ["root"]
+identity_policies    []
+policies             ["root"]
+Success! Enabled the kv secrets engine at: SYSTEMS_CONFIG/
+Key              Value
+---              -----
+created_time     2019-08-22T14:33:31.162135854Z
+deletion_time    n/a
+destroyed        false
+version          1
+Key              Value
+---              -----
+created_time     2019-08-22T14:33:31.371878895Z
+deletion_time    n/a
+destroyed        false
+version          1
+
+
+
+
+howarddeiner@ubuntu:~/IdeaProjects/sample-iac-vault-jenkins-on-demand-runbatch-test-environments$ ./step_5_provision_jenkins.sh
+ ____                 _     _                   _            _    _
+|  _ \ _ __ _____   _(_)___(_) ___  _ __       | | ___ _ __ | | _(_)_ __  ___
+| |_) | '__/ _ \ \ / / / __| |/ _ \| '_ \   _  | |/ _ \ '_ \| |/ / | '_ \/ __|
+|  __/| | | (_) \ V /| \__ \ | (_) | | | | | |_| |  __/ | | |   <| | | | \__ \
+|_|   |_|  \___/ \_/ |_|___/_|\___/|_| |_|  \___/ \___|_| |_|_|\_\_|_| |_|___/
+
+VAULT at ec2-100-24-27-30.compute-1.amazonaws.com
+VAULT_TOKEN is s.pobTR3ohime1FiH2fF5ncnwT
+WARNING! The VAULT_TOKEN environment variable is set! This takes precedence
+over the value set by this command. To use the value set by this command,
+unset the VAULT_TOKEN environment variable or set it to the token displayed
+below.
+
+Success! You are now authenticated. The token information displayed below
+is already stored in the token helper. You do NOT need to run "vault login"
+again. Future Vault requests will automatically use this token.
+
+Key                  Value
+---                  -----
+token                s.pobTR3ohime1FiH2fF5ncnwT
+token_accessor       GsNEBIMc8A6X0QbnYgeVD1Mq
+token_duration       ∞
+token_renewable      false
+token_policies       ["root"]
+identity_policies    []
+policies             ["root"]
+====== Metadata ======
+Key              Value
+---              -----
+created_time     2019-08-22T14:33:31.162135854Z
+deletion_time    n/a
+destroyed        false
+version          1
+
+=== Data ===
+Key    Value
+---    -----
+dns    ec2-3-90-231-173.compute-1.amazonaws.com
+JENKINS at ec2-3-90-231-173.compute-1.amazonaws.com
+upload: provision_jenkins.sh to /home/ubuntu/provision_jenkins.sh
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+  Uploaded 'provision_jenkins.sh' to 'ec2-3-90-231-173.compute-1.amazonaws.com:/home/ubuntu/provision_jenkins.sh'
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 1.59 seconds
+remote execution: chmod +x /home/ubuntu/provision_jenkins.sh
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 0.80 seconds
+remote execution: /home/ubuntu/provision_jenkins.sh
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+  STDOUT:
+    OK
+    Selecting previously unselected package pigz.
+(Reading database ... 51263 files and directories currently installed.)
+    Preparing to unpack .../pigz_2.3.1-2_amd64.deb ...
+    Unpacking pigz (2.3.1-2) ...
+    Selecting previously unselected package aufs-tools.
+    Preparing to unpack .../aufs-tools_1%3a3.2+20130722-1.1ubuntu1_amd64.deb ...
+    Unpacking aufs-tools (1:3.2+20130722-1.1ubuntu1) ...
+    Selecting previously unselected package cgroupfs-mount.
+    Preparing to unpack .../cgroupfs-mount_1.2_all.deb ...
+    Unpacking cgroupfs-mount (1.2) ...
+    Selecting previously unselected package containerd.io.
+    Preparing to unpack .../containerd.io_1.2.6-3_amd64.deb ...
+    Unpacking containerd.io (1.2.6-3) ...
+    Selecting previously unselected package docker-ce-cli.
+    Preparing to unpack .../docker-ce-cli_5%3a19.03.1~3-0~ubuntu-xenial_amd64.deb ...
+    Unpacking docker-ce-cli (5:19.03.1~3-0~ubuntu-xenial) ...
+    Selecting previously unselected package docker-ce.
+    Preparing to unpack .../docker-ce_5%3a19.03.1~3-0~ubuntu-xenial_amd64.deb ...
+    Unpacking docker-ce (5:19.03.1~3-0~ubuntu-xenial) ...
+    Selecting previously unselected package libltdl7:amd64.
+    Preparing to unpack .../libltdl7_2.4.6-0.1_amd64.deb ...
+    Unpacking libltdl7:amd64 (2.4.6-0.1) ...
+    Processing triggers for man-db (2.7.5-1) ...
+    Processing triggers for libc-bin (2.23-0ubuntu10) ...
+    Processing triggers for ureadahead (0.100.0-19) ...
+    Processing triggers for systemd (229-4ubuntu21.2) ...
+    Setting up pigz (2.3.1-2) ...
+    Setting up aufs-tools (1:3.2+20130722-1.1ubuntu1) ...
+    Setting up cgroupfs-mount (1.2) ...
+    Setting up containerd.io (1.2.6-3) ...
+    Setting up docker-ce-cli (5:19.03.1~3-0~ubuntu-xenial) ...
+    Setting up docker-ce (5:19.03.1~3-0~ubuntu-xenial) ...
+    Setting up libltdl7:amd64 (2.4.6-0.1) ...
+    Processing triggers for libc-bin (2.23-0ubuntu10) ...
+    Processing triggers for systemd (229-4ubuntu21.2) ...
+    Processing triggers for ureadahead (0.100.0-19) ...
+    Start the Jenkins server
+    aaeeea6f9f52881df6081aa5f7f3a8185ff38d4281cc72192ba9e612f5f5fe97
+    85741df07ec062a2893f170af41518a46ed567ca5ea71f992677077dcdcce1d1
+    Waiting for Jenkins to start
+    Jenkins has started
+  STDERR:
+    debconf: unable to initialize frontend: Dialog
+    debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+    debconf: falling back to frontend: Readline
+    debconf: unable to initialize frontend: Readline
+    debconf: (This frontend requires a controlling tty.)
+    debconf: falling back to frontend: Teletype
+    dpkg-preconfigure: unable to re-open stdin:
+    Unable to find image 'howarddeiner/jenkins:latest' locally
+    latest: Pulling from howarddeiner/jenkins
+    a4d8138d0f6b: Pulling fs layer
+    dbdc36973392: Pulling fs layer
+    f59d6d019dd5: Pulling fs layer
+    aaef3e026258: Pulling fs layer
+    5e86b04a4500: Pulling fs layer
+    1a6643a2873a: Pulling fs layer
+    2ad1e30fc17c: Pulling fs layer
+    b11087dc1660: Pulling fs layer
+    a73b2443a6ae: Pulling fs layer
+    123657f312d0: Pulling fs layer
+    5567e0ceb496: Pulling fs layer
+    0a4d1865abeb: Pulling fs layer
+    eb539a193474: Pulling fs layer
+    5ef205f29d52: Pulling fs layer
+    cd0eb2fd0917: Pulling fs layer
+    4f903a85e1c8: Pulling fs layer
+    075c0f1b9497: Pulling fs layer
+    c212ea994a38: Pulling fs layer
+    0a6488ad8d66: Pulling fs layer
+    832cadd75e3e: Pulling fs layer
+    95b92c54717e: Pulling fs layer
+    41b320a3288f: Pulling fs layer
+    314c80f3a583: Pulling fs layer
+    3b6971ee880a: Pulling fs layer
+    987a55207239: Pulling fs layer
+    abf2eaf7e839: Pulling fs layer
+    7bad1d99b5d3: Pulling fs layer
+    bbe61feb118b: Pulling fs layer
+    8d4190ccfecc: Pulling fs layer
+    7728f6330c27: Pulling fs layer
+    2500085d37d6: Pulling fs layer
+    8f2c9f11749a: Pulling fs layer
+    5d4843aa4c8c: Pulling fs layer
+    c3333381ac26: Pulling fs layer
+    08842e9611da: Pulling fs layer
+    9d68bb8c56e3: Pulling fs layer
+    e166687dae68: Pulling fs layer
+    aaef3e026258: Waiting
+    5e86b04a4500: Waiting
+    1a6643a2873a: Waiting
+    2ad1e30fc17c: Waiting
+    b11087dc1660: Waiting
+    a73b2443a6ae: Waiting
+    123657f312d0: Waiting
+    5567e0ceb496: Waiting
+    0a4d1865abeb: Waiting
+    eb539a193474: Waiting
+    5ef205f29d52: Waiting
+    cd0eb2fd0917: Waiting
+    4f903a85e1c8: Waiting
+    075c0f1b9497: Waiting
+    c212ea994a38: Waiting
+    0a6488ad8d66: Waiting
+    832cadd75e3e: Waiting
+    95b92c54717e: Waiting
+    41b320a3288f: Waiting
+    314c80f3a583: Waiting
+    3b6971ee880a: Waiting
+    987a55207239: Waiting
+    abf2eaf7e839: Waiting
+    7bad1d99b5d3: Waiting
+    bbe61feb118b: Waiting
+    8d4190ccfecc: Waiting
+    7728f6330c27: Waiting
+    2500085d37d6: Waiting
+    8f2c9f11749a: Waiting
+    5d4843aa4c8c: Waiting
+    c3333381ac26: Waiting
+    08842e9611da: Waiting
+    9d68bb8c56e3: Waiting
+    e166687dae68: Waiting
+    f59d6d019dd5: Verifying Checksum
+    f59d6d019dd5: Download complete
+    dbdc36973392: Verifying Checksum
+    dbdc36973392: Download complete
+    a4d8138d0f6b: Verifying Checksum
+    a4d8138d0f6b: Download complete
+    1a6643a2873a: Verifying Checksum
+    1a6643a2873a: Download complete
+    5e86b04a4500: Verifying Checksum
+    5e86b04a4500: Download complete
+    aaef3e026258: Verifying Checksum
+    aaef3e026258: Download complete
+    b11087dc1660: Verifying Checksum
+    b11087dc1660: Download complete
+    a73b2443a6ae: Verifying Checksum
+    a73b2443a6ae: Download complete
+    123657f312d0: Verifying Checksum
+    123657f312d0: Download complete
+    5567e0ceb496: Verifying Checksum
+    5567e0ceb496: Download complete
+    0a4d1865abeb: Verifying Checksum
+    0a4d1865abeb: Download complete
+    5ef205f29d52: Verifying Checksum
+    5ef205f29d52: Download complete
+    2ad1e30fc17c: Verifying Checksum
+    2ad1e30fc17c: Download complete
+    4f903a85e1c8: Verifying Checksum
+    4f903a85e1c8: Download complete
+    cd0eb2fd0917: Verifying Checksum
+    cd0eb2fd0917: Download complete
+    c212ea994a38: Verifying Checksum
+    c212ea994a38: Download complete
+    075c0f1b9497: Verifying Checksum
+    075c0f1b9497: Download complete
+    0a6488ad8d66: Verifying Checksum
+    0a6488ad8d66: Download complete
+    eb539a193474: Verifying Checksum
+    eb539a193474: Download complete
+    95b92c54717e: Verifying Checksum
+    95b92c54717e: Download complete
+    41b320a3288f: Verifying Checksum
+    41b320a3288f: Download complete
+    832cadd75e3e: Verifying Checksum
+    832cadd75e3e: Download complete
+    3b6971ee880a: Verifying Checksum
+    3b6971ee880a: Download complete
+    987a55207239: Verifying Checksum
+    987a55207239: Download complete
+    7bad1d99b5d3: Verifying Checksum
+    7bad1d99b5d3: Download complete
+    bbe61feb118b: Verifying Checksum
+    bbe61feb118b: Download complete
+    abf2eaf7e839: Verifying Checksum
+    abf2eaf7e839: Download complete
+    7728f6330c27: Verifying Checksum
+    7728f6330c27: Download complete
+    8d4190ccfecc: Verifying Checksum
+    8d4190ccfecc: Download complete
+    8f2c9f11749a: Verifying Checksum
+    8f2c9f11749a: Download complete
+    2500085d37d6: Verifying Checksum
+    2500085d37d6: Download complete
+    5d4843aa4c8c: Verifying Checksum
+    5d4843aa4c8c: Download complete
+    c3333381ac26: Verifying Checksum
+    c3333381ac26: Download complete
+    08842e9611da: Verifying Checksum
+    08842e9611da: Download complete
+    9d68bb8c56e3: Verifying Checksum
+    9d68bb8c56e3: Download complete
+    e166687dae68: Verifying Checksum
+    e166687dae68: Download complete
+    314c80f3a583: Verifying Checksum
+    314c80f3a583: Download complete
+    a4d8138d0f6b: Pull complete
+    dbdc36973392: Pull complete
+    f59d6d019dd5: Pull complete
+    aaef3e026258: Pull complete
+    5e86b04a4500: Pull complete
+    1a6643a2873a: Pull complete
+    2ad1e30fc17c: Pull complete
+    b11087dc1660: Pull complete
+    a73b2443a6ae: Pull complete
+    123657f312d0: Pull complete
+    5567e0ceb496: Pull complete
+    0a4d1865abeb: Pull complete
+    eb539a193474: Pull complete
+    5ef205f29d52: Pull complete
+    cd0eb2fd0917: Pull complete
+    4f903a85e1c8: Pull complete
+    075c0f1b9497: Pull complete
+    c212ea994a38: Pull complete
+    0a6488ad8d66: Pull complete
+    832cadd75e3e: Pull complete
+    95b92c54717e: Pull complete
+    41b320a3288f: Pull complete
+    314c80f3a583: Pull complete
+    3b6971ee880a: Pull complete
+    987a55207239: Pull complete
+    abf2eaf7e839: Pull complete
+    7bad1d99b5d3: Pull complete
+    bbe61feb118b: Pull complete
+    8d4190ccfecc: Pull complete
+    7728f6330c27: Pull complete
+    2500085d37d6: Pull complete
+    8f2c9f11749a: Pull complete
+    5d4843aa4c8c: Pull complete
+    c3333381ac26: Pull complete
+    08842e9611da: Pull complete
+    9d68bb8c56e3: Pull complete
+    e166687dae68: Pull complete
+    Digest: sha256:415858b7b41230585a2b9df9df3747cd3da4762f75f262a5da9bdecc2722f572
+    Status: Downloaded newer image for howarddeiner/jenkins:latest
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 95.74 seconds
+Key              Value
+---              -----
+created_time     2019-08-22T14:36:13.23065822Z
+deletion_time    n/a
+destroyed        false
+version          2
+              __                          __           __  _       __        ____                  __           __   _
+   __________/ /_     _____________  ____/ /__  ____  / /_(_)___ _/ /____   / __/___  _____       / /__  ____  / /__(_)___  _____
+  / ___/ ___/ __ \   / ___/ ___/ _ \/ __  / _ \/ __ \/ __/ / __ `/ / ___/  / /_/ __ \/ ___/  __  / / _ \/ __ \/ //_/ / __ \/ ___/
+ (__  |__  ) / / /  / /__/ /  /  __/ /_/ /  __/ / / / /_/ / /_/ / (__  )  / __/ /_/ / /     / /_/ /  __/ / / / ,< / / / / (__  )
+/____/____/_/ /_/   \___/_/   \___/\__,_/\___/_/ /_/\__/_/\__,_/_/____/  /_/  \____/_/      \____/\___/_/ /_/_/|_/_/_/ /_/____/
+
+remote execution: sudo docker exec jenkins mkdir /var/jenkins_home/.ssh
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 2.07 seconds
+remote execution: sudo docker exec jenkins ssh-keygen -t rsa -b 2048 -f '/var/jenkins_home/.ssh/id_rsa' -q
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+  STDERR:
+    Enter passphrase (empty for no passphrase): Enter same passphrase again:
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 1.33 seconds
+    ___ _       _______                       __           __  _       __        ____                  __           __   _
+   /   | |     / / ___/   _____________  ____/ /__  ____  / /_(_)___ _/ /____   / __/___  _____       / /__  ____  / /__(_)___  _____
+  / /| | | /| / /\__ \   / ___/ ___/ _ \/ __  / _ \/ __ \/ __/ / __ `/ / ___/  / /_/ __ \/ ___/  __  / / _ \/ __ \/ //_/ / __ \/ ___/
+ / ___ | |/ |/ /___/ /  / /__/ /  /  __/ /_/ /  __/ / / / /_/ / /_/ / (__  )  / __/ /_/ / /     / /_/ /  __/ / / / ,< / / / / (__  )
+/_/  |_|__/|__//____/   \___/_/   \___/\__,_/\___/_/ /_/\__/_/\__,_/_/____/  /_/  \____/_/      \____/\___/_/ /_/_/|_/_/_/ /_/____/
+
+remote execution: mkdir /home/ubuntu/.aws
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 0.79 seconds
+remote execution: sudo docker exec jenkins mkdir /var/jenkins_home/.aws
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 1.10 seconds
+upload: /home/howarddeiner/.aws/config to /home/ubuntu/.aws/config
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+  Uploaded '/home/howarddeiner/.aws/config' to 'ec2-3-90-231-173.compute-1.amazonaws.com:/home/ubuntu/.aws/config'
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 1.65 seconds
+remote execution: sudo docker cp /home/ubuntu/.aws/config jenkins:/var/jenkins_home/.aws/config
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 0.88 seconds
+upload: /home/howarddeiner/.aws/credentials to /home/ubuntu/.aws/credentials
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+  Uploaded '/home/howarddeiner/.aws/credentials' to 'ec2-3-90-231-173.compute-1.amazonaws.com:/home/ubuntu/.aws/credentials'
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 1.43 seconds
+remote execution: sudo docker cp /home/ubuntu/.aws/credentials jenkins:/var/jenkins_home/.aws/credentials
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 0.91 seconds
+    ____                      _          _    __            ____                                       _       __               __           __   _
+   / __ )__  ___________     (_)___     | |  / /___ ___  __/ / /_   ____ ______________  __________   (_)___  / /_____         / /__  ____  / /__(_)___  _____
+  / __  / / / / ___/ __ \   / / __ \    | | / / __ `/ / / / / __/  / __ `/ ___/ ___/ _ \/ ___/ ___/  / / __ \/ __/ __ \   __  / / _ \/ __ \/ //_/ / __ \/ ___/
+ / /_/ / /_/ / /  / / / /  / / / / /    | |/ / /_/ / /_/ / / /_   / /_/ / /__/ /__/  __(__  |__  )  / / / / / /_/ /_/ /  / /_/ /  __/ / / / ,< / / / / (__  )
+/_____/\__,_/_/  /_/ /_/  /_/_/ /_/     |___/\__,_/\__,_/_/\__/   \__,_/\___/\___/\___/____/____/  /_/_/ /_/\__/\____/   \____/\___/_/ /_/_/|_/_/_/ /_/____/
+
+upload: /home/howarddeiner/.vault_dns to /home/ubuntu/.vault_dns
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+  Uploaded '/home/howarddeiner/.vault_dns' to 'ec2-3-90-231-173.compute-1.amazonaws.com:/home/ubuntu/.vault_dns'
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 1.58 seconds
+remote execution: sudo docker cp /home/ubuntu/.vault_dns jenkins:/var/jenkins_home/.vault_dns
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 0.91 seconds
+upload: /home/howarddeiner/.vault_initial_root_token to /home/ubuntu/.vault_initial_root_token
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+  Uploaded '/home/howarddeiner/.vault_initial_root_token' to 'ec2-3-90-231-173.compute-1.amazonaws.com:/home/ubuntu/.vault_initial_root_token'
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 1.53 seconds
+remote execution: sudo docker cp /home/ubuntu/.vault_initial_root_token jenkins:/var/jenkins_home/.vault_initial_root_token
+Started on ec2-3-90-231-173.compute-1.amazonaws.com...
+Finished on ec2-3-90-231-173.compute-1.amazonaws.com:
+Successful on 1 node: ec2-3-90-231-173.compute-1.amazonaws.com
+Ran on 1 node in 0.89 seconds
+Key              Value
+---              -----
+created_time     2019-08-22T14:36:38.743671074Z
+deletion_time    n/a
+destroyed        false
+version          3
+
+
+
+
+
+howarddeiner@ubuntu:~/IdeaProjects/sample-iac-vault-jenkins-on-demand-runbatch-test-environments$ ./step_6_initiate_jenkins_build_and_test.sh
+ ___       _ _   _       _             _            _    _             _____ _____ ____ _____   _  ___  ____
+|_ _|_ __ (_) |_(_) __ _| |_ ___      | | ___ _ __ | | _(_)_ __  ___  |_   _| ____/ ___|_   _| | |/ _ \| __ )
+ | || '_ \| | __| |/ _` | __/ _ \  _  | |/ _ \ '_ \| |/ / | '_ \/ __|   | | |  _| \___ \ | |_  | | | | |  _ \
+ | || | | | | |_| | (_| | ||  __/ | |_| |  __/ | | |   <| | | | \__ \   | | | |___ ___) || | |_| | |_| | |_) |
+|___|_| |_|_|\__|_|\__,_|\__\___|  \___/ \___|_| |_|_|\_\_|_| |_|___/   |_| |_____|____/ |_|\___/ \___/|____/
+
+JENKINS at ec2-3-90-231-173.compute-1.amazonaws.com
+   ______                __              __           __   _               _______________________  ______  ____
+  / ____/_______  ____ _/ /____         / /__  ____  / /__(_)___  _____   /_  __/ ____/ ___/_  __/ / / __ \/ __ )
+ / /   / ___/ _ \/ __ `/ __/ _ \   __  / / _ \/ __ \/ //_/ / __ \/ ___/    / / / __/  \__ \ / /_  / / / / / __  |
+/ /___/ /  /  __/ /_/ / /_/  __/  / /_/ /  __/ / / / ,< / / / / (__  )    / / / /___ ___/ // / /_/ / /_/ / /_/ /
+\____/_/   \___/\__,_/\__/\___/   \____/\___/_/ /_/_/|_/_/_/ /_/____/    /_/ /_____//____//_/\____/\____/_____/
+
+    ____        _ __    __       __           __   _               _______________________  ______  ____
+   / __ )__  __(_) /___/ /      / /__  ____  / /__(_)___  _____   /_  __/ ____/ ___/_  __/ / / __ \/ __ )
+  / __  / / / / / / __  /  __  / / _ \/ __ \/ //_/ / __ \/ ___/    / / / __/  \__ \ / /_  / / / / / __  |
+ / /_/ / /_/ / / / /_/ /  / /_/ /  __/ / / / ,< / / / / (__  )    / / / /___ ___/ // / /_/ / /_/ / /_/ /
+/_____/\__,_/_/_/\__,_/   \____/\___/_/ /_/_/|_/_/_/ /_/____/    /_/ /_____//____//_/\____/\____/_____/
+
+Check http://ec2-3-90-231-173.compute-1.amazonaws.com for build artifacts
+
+
+
+
+
+howarddeiner@ubuntu:~/IdeaProjects/sample-iac-vault-jenkins-on-demand-runbatch-test-environments$ ./step_7_teardown.sh
+ _____                  _                       _____                      _   _     _
+|_   _|__  __ _ _ __ __| | _____      ___ __   | ____|_   _____ _ __ _   _| |_| |__ (_)_ __   __ _
+  | |/ _ \/ _` | '__/ _` |/ _ \ \ /\ / / '_ \  |  _| \ \ / / _ \ '__| | | | __| '_ \| | '_ \ / _` |
+  | |  __/ (_| | | | (_| | (_) \ V  V /| | | | | |___ \ V /  __/ |  | |_| | |_| | | | | | | | (_| |
+  |_|\___|\__,_|_|  \__,_|\___/ \_/\_/ |_| |_| |_____| \_/ \___|_|   \__, |\__|_| |_|_|_| |_|\__, |
+                                                                     |___/                   |___/
+aws_key_pair.jenkins_key_pair: Refreshing state... [id=jenkins_key_pair]
+aws_security_group.jenkins: Refreshing state... [id=sg-09dc371e4dd248bd3]
+aws_instance.ec2_jenkins[0]: Refreshing state... [id=i-0f13ba411e43dd16f]
+aws_instance.ec2_jenkins[0]: Destroying... [id=i-0f13ba411e43dd16f]
+aws_instance.ec2_jenkins[0]: Still destroying... [id=i-0f13ba411e43dd16f, 10s elapsed]
+aws_instance.ec2_jenkins[0]: Still destroying... [id=i-0f13ba411e43dd16f, 20s elapsed]
+aws_instance.ec2_jenkins[0]: Still destroying... [id=i-0f13ba411e43dd16f, 30s elapsed]
+aws_instance.ec2_jenkins[0]: Destruction complete after 32s
+aws_key_pair.jenkins_key_pair: Destroying... [id=jenkins_key_pair]
+aws_security_group.jenkins: Destroying... [id=sg-09dc371e4dd248bd3]
+aws_key_pair.jenkins_key_pair: Destruction complete after 0s
+aws_security_group.jenkins: Destruction complete after 1s
+
+Destroy complete! Resources: 3 destroyed.
+aws_key_pair.vault_key_pair: Refreshing state... [id=vault_key_pair]
+aws_security_group.vault: Refreshing state... [id=sg-092005e0ec807c230]
+aws_instance.ec2_vault[0]: Refreshing state... [id=i-02f6c6cf0386af469]
+aws_instance.ec2_vault[0]: Destroying... [id=i-02f6c6cf0386af469]
+aws_instance.ec2_vault[0]: Still destroying... [id=i-02f6c6cf0386af469, 10s elapsed]
+aws_instance.ec2_vault[0]: Still destroying... [id=i-02f6c6cf0386af469, 20s elapsed]
+aws_instance.ec2_vault[0]: Still destroying... [id=i-02f6c6cf0386af469, 30s elapsed]
+aws_instance.ec2_vault[0]: Destruction complete after 31s
+aws_key_pair.vault_key_pair: Destroying... [id=vault_key_pair]
+aws_security_group.vault: Destroying... [id=sg-092005e0ec807c230]
+aws_key_pair.vault_key_pair: Destruction complete after 1s
+aws_security_group.vault: Destruction complete after 1s
+
+Destroy complete! Resources: 3 destroyed.
+
+
