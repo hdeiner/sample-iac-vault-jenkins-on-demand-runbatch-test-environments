@@ -36,9 +36,11 @@
         <hudson.tasks.Shell>
             <command>/var/jenkins_home/workspace/TESTJOB/remote-testjob/step_3_run_tests.sh</command>
         </hudson.tasks.Shell>
+<!--
         <hudson.tasks.Shell>
             <command>/var/jenkins_home/workspace/TESTJOB/remote-testjob/step_4_teardown.sh</command>
         </hudson.tasks.Shell>
+-->
     </builders>
     <publishers/>
     <buildWrappers/>
