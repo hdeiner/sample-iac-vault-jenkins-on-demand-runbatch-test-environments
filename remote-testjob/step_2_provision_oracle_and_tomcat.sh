@@ -82,7 +82,10 @@ echo "url: jdbc:oracle:thin:@$ORACLE_DNS:1521:xe" >> liquibase.properties
 echo "username: "$ORACLE_USER >> liquibase.properties
 echo "password: "$ORACLE_PASSWORD >> liquibase.properties
 
-echo "Create database schema and load sample data"
+echo "liquibase.properties file="
+cat liquibase.properties
+
+echo "Run liquibase to create database schema and load sample data"
 liquibase --changeLogFile=src/main/db/changelog.xml update
 
 vault kv put -address="http://$VAULT_DNS:8200" SYSTEMS_CONFIG/$RUNBATCH/oracle/status status="test database created"

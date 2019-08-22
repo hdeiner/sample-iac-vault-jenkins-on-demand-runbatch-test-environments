@@ -28,19 +28,17 @@
     <concurrentBuild>false</concurrentBuild>
     <builders>
         <hudson.tasks.Shell>
-            <command>/var/jenkins_home/workspace/TESTJOB/remote-testjob/step_1_terraform_oracle_and_tomcat.sh</command>
+            <command>./remote-testjob/step_1_terraform_oracle_and_tomcat.sh</command>
         </hudson.tasks.Shell>
         <hudson.tasks.Shell>
-            <command>/var/jenkins_home/workspace/TESTJOB/remote-testjob/step_2_provision_oracle_and_tomcat.sh</command>
+            <command>./remote-testjob/step_2_provision_oracle_and_tomcat.sh</command>
         </hudson.tasks.Shell>
         <hudson.tasks.Shell>
-            <command>/var/jenkins_home/workspace/TESTJOB/remote-testjob/step_3_run_tests.sh</command>
+            <command>./remote-testjob/step_3_run_tests.sh</command>
         </hudson.tasks.Shell>
-<!--
         <hudson.tasks.Shell>
-            <command>/var/jenkins_home/workspace/TESTJOB/remote-testjob/step_4_teardown.sh</command>
+            <command>./remote-testjob/step_4_teardown.sh</command>
         </hudson.tasks.Shell>
--->
     </builders>
     <publishers/>
     <buildWrappers/>
